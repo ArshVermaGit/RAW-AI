@@ -134,7 +134,7 @@ export const UpgradeModal = ({ isOpen, onClose, plan, onSuccess }: UpgradeModalP
         key: orderData.keyId,
         amount: orderData.amount,
         currency: orderData.currency,
-        name: 'Humanizer.ai',
+        name: 'RAW.AI',
         description: `${details.name} Plan - Monthly Subscription`,
         order_id: orderData.orderId,
         handler: async (response: any) => {
