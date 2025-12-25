@@ -1,12 +1,12 @@
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { motion, AnimatePresence } from 'framer-motion';
-import { 
-  Sparkles, 
-  Wand2, 
-  Shield, 
-  Zap, 
-  ChevronRight, 
+import {
+  Sparkles,
+  Wand2,
+  Shield,
+  Zap,
+  ChevronRight,
   ChevronLeft,
   Check,
   Bot,
@@ -18,6 +18,7 @@ import { FloatingParticles } from '@/components/FloatingParticles';
 import { useAuth } from '@/contexts/AuthContext';
 import { supabase } from '@/integrations/supabase/client';
 import { cn } from '@/lib/utils';
+import { useToast } from '@/components/ui/use-toast';
 
 interface OnboardingStep {
   id: number;
@@ -73,7 +74,7 @@ const steps: OnboardingStep[] = [
     id: 4,
     icon: <TrendingUp className="w-8 h-8" />,
     title: "You're All Set!",
-    subtitle: "Start creating human content",
+    subtitle: "Start creating with RAW.AI",
     description: "You're ready to transform your AI content. Start with our free tier and upgrade anytime for unlimited access.",
     features: [
       "500 free words to start",
@@ -89,6 +90,7 @@ const Onboarding = () => {
   const [isCompleting, setIsCompleting] = useState(false);
   const navigate = useNavigate();
   const { user, refreshProfile } = useAuth();
+  const { toast } = useToast(); // Added useToast hook
 
   const handleNext = () => {
     if (currentStep < steps.length - 1) {
@@ -104,19 +106,25 @@ const Onboarding = () => {
 
   const handleComplete = async () => {
     if (!user) return;
-    
+
     setIsCompleting(true);
     try {
       await supabase
         .from('profiles')
         .update({ onboarding_completed: true })
         .eq('id', user.id);
-      
+
       await refreshProfile();
+      toast({ // Added toast call here, as it's a more appropriate place for a completion message
+        title: '🎉 Account Created!',
+        description: 'Welcome to RAW.AI!',
+      });
       navigate('/');
     } catch (error) {
       console.error('Error completing onboarding:', error);
       navigate('/');
+    } finally {
+      setIsCompleting(false);
     }
   };
 
@@ -131,7 +139,7 @@ const Onboarding = () => {
     <div className="min-h-screen bg-background text-foreground overflow-hidden relative flex items-center justify-center px-6">
       <FloatingParticles />
       <div className="fixed inset-0 grid-bg opacity-30 pointer-events-none" />
-      
+
       {/* Skip button */}
       <motion.button
         initial={{ opacity: 0 }}
@@ -152,10 +160,10 @@ const Onboarding = () => {
               onClick={() => setCurrentStep(index)}
               className={cn(
                 "h-2 rounded-full transition-all duration-300",
-                index === currentStep 
-                  ? "w-8 bg-foreground" 
-                  : index < currentStep 
-                    ? "w-2 bg-foreground/60" 
+                index === currentStep
+                  ? "w-8 bg-foreground"
+                  : index < currentStep
+                    ? "w-2 bg-foreground/60"
                     : "w-2 bg-foreground/20"
               )}
               whileHover={{ scale: 1.2 }}
@@ -175,7 +183,7 @@ const Onboarding = () => {
             className="text-center"
           >
             {/* Icon */}
-            <motion.div 
+            <motion.div
               className="relative mx-auto mb-8 w-24 h-24"
               initial={{ scale: 0.5, opacity: 0 }}
               animate={{ scale: 1, opacity: 1 }}
@@ -248,7 +256,7 @@ const Onboarding = () => {
         </AnimatePresence>
 
         {/* Navigation */}
-        <motion.div 
+        <motion.div
           className="flex items-center justify-center gap-4"
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
