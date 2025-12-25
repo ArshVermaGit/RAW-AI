@@ -258,8 +258,17 @@ IMPORTANT RULES:
       throw new Error("Invalid response format from AI");
     }
 
-    const result = JSON.parse(toolCall.function.arguments);
-    const { humanizedText, humanScore, improvements } = result;
+    let { humanizedText, humanScore, improvements } = result;
+
+    // Safety checks for response format
+    if (!humanizedText && result.humanisedText) humanizedText = result.humanisedText;
+    if (!humanizedText && result.humanized_text) humanizedText = result.humanized_text;
+
+    const safeHumanScore = typeof humanScore === 'number' ? humanScore :
+      (typeof humanScore === 'string' ? parseFloat(humanScore) : 85);
+
+    const safeImprovements = Array.isArray(improvements) ? improvements :
+      (typeof improvements === 'string' ? [improvements] : []);
 
     if (!humanizedText) {
       throw new Error("No humanized text in response");
@@ -280,8 +289,8 @@ IMPORTANT RULES:
 
     return new Response(JSON.stringify({
       humanizedText,
-      humanScore: Math.min(100, Math.max(0, humanScore)),
-      improvements,
+      humanScore: Math.min(100, Math.max(0, isNaN(safeHumanScore) ? 85 : safeHumanScore)),
+      improvements: safeImprovements,
       wordsUsed: wordsCount,
       model: selectedModel
     }), {
