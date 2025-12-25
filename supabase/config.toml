@@ -1,4 +1,4 @@
-project_id = "uyeusptrncnhajmqwnus"
+project_id = "ipoglrcqvunsukhipxem"
 
 [api]
 enabled = true
@@ -25,7 +25,7 @@ enable_signup = true
 double_confirm_changes = true
 enable_confirmations = false
 
-[functions.humanize]
+[functions.raw-ai]
 verify_jwt = false
 
 [functions.create-razorpay-order]
