@@ -695,9 +695,9 @@ const Index = () => {
                           <p className="text-base leading-relaxed whitespace-pre-wrap">{outputText}</p>
                           <div className="mt-6 pt-4 border-t border-border/30 space-y-4">
                             <ScoreDisplay
-                              score={humanScore || 0}
+                              score={Number(humanScore) || 0}
                               label="Human Score"
-                              variant={humanScore && humanScore >= 90 ? "success" : humanScore && humanScore >= 70 ? "warning" : "danger"}
+                              variant={typeof humanScore === 'number' && humanScore >= 90 ? "success" : typeof humanScore === 'number' && humanScore >= 70 ? "warning" : "danger"}
                             />
                             {improvements.length > 0 && (
                               <motion.div
@@ -708,7 +708,7 @@ const Index = () => {
                               >
                                 <p className="text-xs uppercase tracking-wider text-muted-foreground font-medium">Improvements Made</p>
                                 <ul className="space-y-1">
-                                  {improvements.map((improvement, i) => (
+                                  {Array.isArray(improvements) && improvements.map((improvement, i) => (
                                     <motion.li
                                       key={i}
                                       initial={{ opacity: 0, x: -10 }}
@@ -717,7 +717,7 @@ const Index = () => {
                                       className="flex items-start gap-2 text-sm text-muted-foreground"
                                     >
                                       <Check className="w-4 h-4 text-green-500 mt-0.5 shrink-0" />
-                                      <span>{improvement}</span>
+                                      <span>{typeof improvement === 'string' ? improvement : JSON.stringify(improvement)}</span>
                                     </motion.li>
                                   ))}
                                 </ul>
