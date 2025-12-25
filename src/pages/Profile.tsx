@@ -1,8 +1,8 @@
 import { useState, useRef, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { motion } from 'framer-motion';
-import { 
-  Sparkles, User, Camera, Save, ArrowLeft, Loader2, 
+import {
+  Sparkles, User, Camera, Save, ArrowLeft, Loader2,
   Crown, CheckCircle, Clock, CreditCard, Mail, BarChart3, Zap
 } from 'lucide-react';
 import { Progress } from '@/components/ui/progress';
@@ -59,7 +59,7 @@ const Profile = () => {
   useEffect(() => {
     const fetchData = async () => {
       if (!user) return;
-      
+
       // Fetch subscriptions
       const { data: subData } = await supabase
         .from('subscriptions')
@@ -233,25 +233,25 @@ const Profile = () => {
   return (
     <div className="min-h-screen bg-background text-foreground overflow-hidden relative">
       <FloatingParticles />
-      <motion.div 
+      <motion.div
         className="fixed inset-0 grid-bg opacity-30 pointer-events-none"
         initial={{ opacity: 0 }}
         animate={{ opacity: 0.3 }}
         transition={{ duration: 1 }}
       />
-      
+
       {/* Animated background orbs */}
-      <motion.div 
+      <motion.div
         className="fixed top-1/4 -left-32 w-96 h-96 bg-primary/10 rounded-full blur-3xl pointer-events-none"
-        animate={{ 
+        animate={{
           x: [0, 20, 0],
           y: [0, -20, 0],
         }}
         transition={{ duration: 8, repeat: Infinity, ease: 'easeInOut' }}
       />
-      <motion.div 
+      <motion.div
         className="fixed bottom-1/4 -right-32 w-96 h-96 bg-primary/5 rounded-full blur-3xl pointer-events-none"
-        animate={{ 
+        animate={{
           x: [0, -20, 0],
           y: [0, 20, 0],
         }}
@@ -282,23 +282,23 @@ const Profile = () => {
             </Button>
           </motion.div>
 
-          <motion.div 
+          <motion.div
             className="flex items-center justify-between"
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{ delay: 0.3 }}
           >
             <div className="flex items-center gap-3">
-              <motion.div 
-                className="w-10 h-10 bg-foreground rounded-xl flex items-center justify-center"
+              <motion.div
+                className="w-10 h-10 bg-foreground rounded-xl flex items-center justify-center overflow-hidden"
                 initial={{ scale: 0, rotate: -180 }}
                 animate={{ scale: 1, rotate: 0 }}
                 transition={{ delay: 0.4, type: 'spring', stiffness: 200 }}
               >
-                <Sparkles className="w-5 h-5 text-background" />
+                <img src="/logo.png" alt="RAW.AI" className="w-8 h-8 object-contain invert dark:invert-0" />
               </motion.div>
               <div>
-                <motion.h1 
+                <motion.h1
                   className="text-2xl font-bold"
                   initial={{ opacity: 0, y: 10 }}
                   animate={{ opacity: 1, y: 0 }}
@@ -306,7 +306,7 @@ const Profile = () => {
                 >
                   Profile Settings
                 </motion.h1>
-                <motion.p 
+                <motion.p
                   className="text-muted-foreground text-sm"
                   initial={{ opacity: 0, y: 10 }}
                   animate={{ opacity: 1, y: 0 }}
@@ -334,28 +334,28 @@ const Profile = () => {
           transition={{ duration: 0.6, ease: 'easeOut' }}
           className="relative rounded-2xl overflow-hidden mb-8"
         >
-          <motion.div 
+          <motion.div
             className="absolute -inset-px rounded-2xl bg-gradient-to-b from-foreground/20 via-foreground/5 to-transparent pointer-events-none"
             initial={{ opacity: 0 }}
             whileInView={{ opacity: 1 }}
             viewport={{ once: true }}
             transition={{ delay: 0.2 }}
           />
-          
+
           <div className="relative bg-card/80 backdrop-blur-xl border border-border/30 rounded-2xl p-8">
             {/* Avatar Section */}
             <div className="flex flex-col sm:flex-row items-center gap-6 mb-8 pb-8 border-b border-border/30">
               <div className="relative">
-                <div 
+                <div
                   className={cn(
                     "w-24 h-24 rounded-full bg-secondary flex items-center justify-center overflow-hidden",
                     isUploading && "opacity-50"
                   )}
                 >
                   {avatarUrl ? (
-                    <img 
-                      src={avatarUrl} 
-                      alt="Avatar" 
+                    <img
+                      src={avatarUrl}
+                      alt="Avatar"
                       className="w-full h-full object-cover"
                     />
                   ) : (
@@ -460,16 +460,16 @@ const Profile = () => {
           transition={{ duration: 0.6, delay: 0.1, ease: 'easeOut' }}
           className="relative rounded-2xl overflow-hidden mb-8"
         >
-          <motion.div 
+          <motion.div
             className="absolute -inset-px rounded-2xl bg-gradient-to-b from-foreground/20 via-foreground/5 to-transparent pointer-events-none"
             initial={{ opacity: 0 }}
             whileInView={{ opacity: 1 }}
             viewport={{ once: true }}
             transition={{ delay: 0.3 }}
           />
-          
+
           <div className="relative bg-card/80 backdrop-blur-xl border border-border/30 rounded-2xl p-8">
-            <motion.div 
+            <motion.div
               className="flex items-center gap-3 mb-6"
               initial={{ opacity: 0, x: -20 }}
               whileInView={{ opacity: 1, x: 0 }}
@@ -542,7 +542,7 @@ const Profile = () => {
           className="relative rounded-2xl overflow-hidden"
         >
           <div className="absolute -inset-px rounded-2xl bg-gradient-to-b from-foreground/20 via-foreground/5 to-transparent pointer-events-none" />
-          
+
           <div className="relative bg-card/80 backdrop-blur-xl border border-border/30 rounded-2xl p-8">
             <div className="flex items-center gap-3 mb-6">
               <CreditCard className="w-5 h-5 text-muted-foreground" />
