@@ -1,25 +1,45 @@
 <!doctype html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>RAW.AI - Transform AI Text Into Human Voice</title>
-    <meta name="description" content="Transform AI-generated text into natural, human-like content. Bypass AI detection with our advanced text humanizer tool. Free, fast, and undetectable." />
-    <meta name="keywords" content="AI humanizer, text humanizer, bypass AI detection, GPTZero bypass, AI to human text, undetectable AI" />
-    <link rel="canonical" href="https://raw.ai" />
-    <meta property="og:title" content="RAW.AI - Transform AI Text Into Human Voice" />
-    <meta property="og:description" content="Make your AI-generated content sound authentically human. Bypass detection, maintain your voice, preserve your message." />
-    <meta property="og:type" content="website" />
-    <meta property="og:image" content="/logo.png" />
-    <meta name="twitter:card" content="summary_large_image" />
-    <meta name="twitter:site" content="@RAWAI" />
-    <meta name="twitter:title" content="RAW.AI - Transform AI Text Into Human Voice" />
-    <meta name="twitter:description" content="Make your AI-generated content sound authentically human. Bypass detection, maintain your voice, preserve your message." />
-    <meta name="twitter:image" content="/logo.png" />
-    <link rel="icon" type="image/png" href="/favicon.png" />
-  </head>
-  <body>
-    <div id="root"></div>
-    <script type="module" src="/src/main.tsx"></script>
-  </body>
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>RAW.AI - Transform AI Text Into Human Voice</title>
+  <meta name="description"
+    content="Transform AI-generated text into natural, human-like content. Bypass AI detection with our advanced text humanizer tool. Free, fast, and undetectable." />
+  <meta name="keywords"
+    content="AI humanizer, text humanizer, bypass AI detection, GPTZero bypass, AI to human text, undetectable AI" />
+  <link rel="canonical" href="https://raw.ai" />
+  <meta property="og:title" content="RAW.AI - Transform AI Text Into Human Voice" />
+  <meta property="og:description"
+    content="Make your AI-generated content sound authentically human. Bypass detection, maintain your voice, preserve your message." />
+  <meta property="og:type" content="website" />
+  <meta property="og:image" content="/logo.png" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:site" content="@RAWAI" />
+  <meta name="twitter:title" content="RAW.AI - Transform AI Text Into Human Voice" />
+  <meta name="twitter:description"
+    content="Make your AI-generated content sound authentically human. Bypass detection, maintain your voice, preserve your message." />
+  <meta name="twitter:image" content="/logo.png" />
+  <link rel="icon" type="image/png" href="/favicon.png" />
+</head>
+
+<body>
+  <div id="root"></div>
+  <script>
+    window.onload = function () {
+      setTimeout(function () {
+        var root = document.getElementById('root');
+        if (root && root.innerHTML === "") {
+          console.error("CRITICAL: React failed to mount. This usually means environment variables (VITE_SUPABASE_URL) are missing in Vercel.");
+          document.body.innerHTML += '<div style="position:fixed;top:0;left:0;width:100%;background:red;color:white;padding:20px;z-index:9999;text-align:center;">' +
+            '<b>Configuration Error:</b> The app failed to load. Please ensure VITE_SUPABASE_URL and VITE_SUPABASE_PUBLISHABLE_KEY are set in Vercel settings.' +
+            '</div>';
+        }
+      }, 3000);
+    };
+  </script>
+  <script type="module" src="/src/main.tsx"></script>
+</body>
+
 </html>
