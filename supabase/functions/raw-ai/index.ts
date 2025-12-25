@@ -258,6 +258,7 @@ IMPORTANT RULES:
       throw new Error("Invalid response format from AI");
     }
 
+    const result = JSON.parse(toolCall.function.arguments);
     let { humanizedText, humanScore, improvements } = result;
 
     // Safety checks for response format
