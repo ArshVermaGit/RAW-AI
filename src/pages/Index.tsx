@@ -1,9 +1,9 @@
 import { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { motion, AnimatePresence, useScroll, useTransform } from 'framer-motion';
-import { 
-  Copy, Check, Sparkles, ArrowRight, Zap, Shield, Brain, 
-  Wand2, Globe, Target, Award, Menu, X, ClipboardPaste, 
+import {
+  Copy, Check, Sparkles, ArrowRight, Zap, Shield, Brain,
+  Wand2, Globe, Target, Award, Menu, X, ClipboardPaste,
   Play, Rocket, Star, ChevronDown, Eye, FileText, Lock, Crown, LogOut, User, Settings
 } from 'lucide-react';
 import { Button } from '@/components/ui/button';
@@ -42,7 +42,7 @@ const Index = () => {
   const [featureModal, setFeatureModal] = useState<{ open: boolean; feature: any }>({ open: false, feature: null });
   const [pricingModal, setPricingModal] = useState<{ open: boolean; plan: any }>({ open: false, plan: null });
   const [upgradeModal, setUpgradeModal] = useState<{ open: boolean; plan: 'pro' | 'ultra' }>({ open: false, plan: 'pro' });
-  
+
   const { user, profile, signOut, refreshProfile, session } = useAuth();
   const navigate = useNavigate();
   const { toast } = useToast();
@@ -62,7 +62,7 @@ const Index = () => {
     }
 
     const wordCount = inputText.trim().split(/\s+/).length;
-    
+
     // Check word limit for non-authenticated users
     if (!user && wordCount > 200) {
       toast({
@@ -86,18 +86,18 @@ const Index = () => {
     }
 
     setIsLoading(true);
-    
+
     try {
       const headers: Record<string, string> = {
         'Content-Type': 'application/json',
       };
-      
+
       // Add auth header if user is logged in
       if (session?.access_token) {
         headers['Authorization'] = `Bearer ${session.access_token}`;
       }
 
-      const response = await fetch(`${import.meta.env.VITE_SUPABASE_URL}/functions/v1/humanize`, {
+      const response = await fetch(`${import.meta.env.VITE_SUPABASE_URL}/functions/v1/raw-ai`, {
         method: 'POST',
         headers,
         body: JSON.stringify({
@@ -143,10 +143,10 @@ const Index = () => {
       setOutputText(data.humanizedText);
       setHumanScore(data.humanScore || null);
       setImprovements(data.improvements || []);
-      
+
       // Refetch usage after successful humanization
       refetchUsage();
-      
+
       toast({
         title: "✨ Text Humanized!",
         description: `Human score: ${data.humanScore}% - Your text now sounds natural.`,
@@ -273,15 +273,15 @@ const Index = () => {
       <motion.div style={{ y: floatingY }}>
         <FloatingParticles />
       </motion.div>
-      
+
       {/* Grid background with parallax */}
-      <motion.div 
+      <motion.div
         className="fixed inset-0 grid-bg opacity-30 pointer-events-none"
         style={{ y: backgroundY }}
       />
 
       {/* Navigation */}
-      <motion.nav 
+      <motion.nav
         className="fixed top-0 left-0 right-0 z-50 glass-border"
         initial={{ y: -100 }}
         animate={{ y: 0 }}
@@ -289,19 +289,19 @@ const Index = () => {
       >
         <div className="container mx-auto px-6 py-4">
           <div className="flex items-center justify-between">
-            <motion.div 
+            <motion.div
               className="flex items-center gap-3"
               whileHover={{ scale: 1.02 }}
             >
               <div className="relative">
-                <div className="w-10 h-10 bg-foreground rounded-xl flex items-center justify-center">
-                  <Sparkles className="w-5 h-5 text-background" />
+                <div className="w-10 h-10 bg-foreground rounded-xl flex items-center justify-center overflow-hidden">
+                  <img src="/logo.png" alt="RAW.AI" className="w-8 h-8 object-contain invert dark:invert-0" />
                 </div>
                 <div className="absolute -inset-1 bg-foreground/20 rounded-xl blur-md -z-10" />
               </div>
-              <span className="font-display font-bold text-xl tracking-tight">Humanizer<span className="text-muted-foreground">.ai</span></span>
+              <span className="font-display font-bold text-xl tracking-tight">RAW<span className="text-muted-foreground">.AI</span></span>
             </motion.div>
-            
+
             {/* Desktop Nav */}
             <div className="hidden md:flex items-center gap-8">
               <button onClick={() => document.getElementById('features')?.scrollIntoView({ behavior: 'smooth', block: 'start' })} className="text-sm font-medium text-muted-foreground hover:text-foreground transition-colors underline-animated">Features</button>
@@ -312,7 +312,7 @@ const Index = () => {
               <div className="flex items-center gap-3">
                 {user ? (
                   <>
-                    <button 
+                    <button
                       onClick={() => navigate('/profile')}
                       className="flex items-center gap-2 px-3 py-1.5 bg-secondary/50 rounded-full hover:bg-secondary/80 transition-colors"
                     >
@@ -327,9 +327,9 @@ const Index = () => {
                         </span>
                       )}
                     </button>
-                    <Button 
-                      variant="ghost" 
-                      size="sm" 
+                    <Button
+                      variant="ghost"
+                      size="sm"
                       className="rounded-full gap-2"
                       onClick={() => {
                         signOut();
@@ -342,9 +342,9 @@ const Index = () => {
                   </>
                 ) : (
                   <>
-                    <Button 
-                      variant="ghost" 
-                      size="sm" 
+                    <Button
+                      variant="ghost"
+                      size="sm"
                       className="rounded-full"
                       onClick={() => navigate('/auth')}
                     >
@@ -360,9 +360,9 @@ const Index = () => {
             </div>
 
             {/* Mobile menu button */}
-            <Button 
-              variant="ghost" 
-              size="icon" 
+            <Button
+              variant="ghost"
+              size="icon"
               className="md:hidden"
               onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
             >
@@ -373,7 +373,7 @@ const Index = () => {
           {/* Mobile Nav */}
           <AnimatePresence>
             {mobileMenuOpen && (
-              <motion.div 
+              <motion.div
                 className="md:hidden pt-6 pb-4"
                 initial={{ opacity: 0, height: 0 }}
                 animate={{ opacity: 1, height: 'auto' }}
@@ -390,7 +390,7 @@ const Index = () => {
                   <button onClick={() => navigate('/about')} className="text-sm font-medium py-2 text-left">About</button>
                   {user ? (
                     <div className="flex flex-col gap-3 pt-2">
-                      <button 
+                      <button
                         onClick={() => navigate('/profile')}
                         className="flex items-center gap-2 px-3 py-2 bg-secondary/50 rounded-lg hover:bg-secondary/80 transition-colors"
                       >
@@ -405,9 +405,9 @@ const Index = () => {
                           </span>
                         )}
                       </button>
-                      <Button 
-                        variant="ghost" 
-                        size="sm" 
+                      <Button
+                        variant="ghost"
+                        size="sm"
                         className="rounded-full gap-2"
                         onClick={() => {
                           signOut();
@@ -434,26 +434,26 @@ const Index = () => {
       {/* Hero Section with Parallax */}
       <section className="pt-36 pb-16 px-6 relative">
         {/* Parallax background elements */}
-        <motion.div 
+        <motion.div
           className="absolute top-20 left-10 w-72 h-72 bg-primary/10 rounded-full blur-3xl pointer-events-none"
           style={{ y: useTransform(scrollY, [0, 500], [0, 100]) }}
         />
-        <motion.div 
+        <motion.div
           className="absolute top-40 right-10 w-96 h-96 bg-primary/5 rounded-full blur-3xl pointer-events-none"
           style={{ y: useTransform(scrollY, [0, 500], [0, 150]) }}
         />
-        <motion.div 
+        <motion.div
           className="absolute bottom-0 left-1/3 w-64 h-64 bg-primary/8 rounded-full blur-3xl pointer-events-none"
           style={{ y: useTransform(scrollY, [0, 500], [0, 80]) }}
         />
 
-        <motion.div 
+        <motion.div
           className="container mx-auto max-w-6xl relative z-10"
           style={{ y: heroY, opacity: heroOpacity, scale: heroScale }}
         >
           <div className="text-center mb-16">
             {/* Badge */}
-            <motion.div 
+            <motion.div
               className="inline-flex items-center gap-2 px-4 py-2 bg-card/50 border border-border/30 rounded-full mb-8 backdrop-blur-sm"
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
@@ -468,22 +468,22 @@ const Index = () => {
               <span className="text-xs font-medium uppercase tracking-wider">AI-Powered Text Transformation</span>
               <Rocket className="w-4 h-4 animate-bounce-gentle" />
             </motion.div>
-            
+
             {/* Animated Hero Text */}
             <AnimatedHeroText />
-            
-            <motion.p 
+
+            <motion.p
               className="text-lg md:text-xl text-muted-foreground max-w-2xl mx-auto mb-10 mt-8"
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.5, delay: 0.4 }}
             >
-              Transform AI-generated content into natural, human-like text that bypasses 
+              Transform AI-generated content into natural, human-like text that bypasses
               all major AI detectors while maintaining your message.
             </motion.p>
 
             {/* Stats with parallax */}
-            <motion.div 
+            <motion.div
               className="flex flex-wrap justify-center gap-8 mb-12"
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
@@ -494,8 +494,8 @@ const Index = () => {
                 { value: '50K+', label: 'Users' },
                 { value: '10M+', label: 'Words Humanized' },
               ].map((stat, i) => (
-                <motion.div 
-                  key={i} 
+                <motion.div
+                  key={i}
                   className="text-center group cursor-default"
                   whileHover={{ scale: 1.1, y: -5 }}
                   transition={{ type: 'spring', stiffness: 400 }}
@@ -516,7 +516,7 @@ const Index = () => {
       {/* Converter Section */}
       <section id="converter" className="pb-20 px-6 relative z-10">
         <div className="container mx-auto max-w-5xl">
-          <motion.div 
+          <motion.div
             className="relative rounded-3xl overflow-hidden"
             initial={{ opacity: 0, y: 40 }}
             whileInView={{ opacity: 1, y: 0 }}
@@ -525,13 +525,13 @@ const Index = () => {
           >
             {/* Glow border */}
             <div className="absolute -inset-px rounded-3xl bg-gradient-to-b from-foreground/20 via-foreground/5 to-transparent pointer-events-none" />
-            
+
             <div className="relative bg-card/80 backdrop-blur-xl border border-border/30 rounded-3xl overflow-hidden">
               {/* Usage indicator for logged in users */}
               {user && (
                 <div className="p-4 lg:p-6 border-b border-border/30 bg-primary/5">
-                  <UsageIndicator 
-                    onUpgrade={() => setUpgradeModal({ open: true, plan: subscribedPlan === 'free' ? 'pro' : 'ultra' })} 
+                  <UsageIndicator
+                    onUpgrade={() => setUpgradeModal({ open: true, plan: subscribedPlan === 'free' ? 'pro' : 'ultra' })}
                   />
                 </div>
               )}
@@ -541,8 +541,8 @@ const Index = () => {
                 <div className="flex flex-wrap items-center gap-3">
                   <span className="text-sm font-medium text-muted-foreground">Level:</span>
                   {(['lite', 'pro', 'ultra'] as Level[]).map((l) => {
-                    const isLocked = (l === 'pro' && subscribedPlan === 'free') || 
-                                     (l === 'ultra' && subscribedPlan !== 'ultra');
+                    const isLocked = (l === 'pro' && subscribedPlan === 'free') ||
+                      (l === 'ultra' && subscribedPlan !== 'ultra');
                     return (
                       <motion.button
                         key={l}
@@ -625,7 +625,7 @@ const Index = () => {
                   {/* Quick actions overlay */}
                   <AnimatePresence>
                     {!inputText && (
-                      <motion.div 
+                      <motion.div
                         className="absolute inset-0 top-[57px] flex flex-col items-center justify-center gap-4 pointer-events-none"
                         initial={{ opacity: 0 }}
                         animate={{ opacity: 1 }}
@@ -667,7 +667,7 @@ const Index = () => {
                   <div className="flex-1 p-6">
                     <AnimatePresence mode="wait">
                       {isLoading ? (
-                        <motion.div 
+                        <motion.div
                           key="loading"
                           className="flex flex-col items-center justify-center h-full gap-4"
                           initial={{ opacity: 0 }}
@@ -675,7 +675,7 @@ const Index = () => {
                           exit={{ opacity: 0 }}
                         >
                           <div className="relative">
-                            <motion.div 
+                            <motion.div
                               className="w-16 h-16 rounded-full border-2 border-foreground/20"
                               animate={{ rotate: 360 }}
                               transition={{ duration: 1.5, repeat: Infinity, ease: "linear" }}
@@ -694,13 +694,13 @@ const Index = () => {
                         >
                           <p className="text-base leading-relaxed whitespace-pre-wrap">{outputText}</p>
                           <div className="mt-6 pt-4 border-t border-border/30 space-y-4">
-                            <ScoreDisplay 
-                              score={humanScore || 0} 
-                              label="Human Score" 
-                              variant={humanScore && humanScore >= 90 ? "success" : humanScore && humanScore >= 70 ? "warning" : "danger"} 
+                            <ScoreDisplay
+                              score={humanScore || 0}
+                              label="Human Score"
+                              variant={humanScore && humanScore >= 90 ? "success" : humanScore && humanScore >= 70 ? "warning" : "danger"}
                             />
                             {improvements.length > 0 && (
-                              <motion.div 
+                              <motion.div
                                 initial={{ opacity: 0, y: 10 }}
                                 animate={{ opacity: 1, y: 0 }}
                                 transition={{ delay: 0.3 }}
@@ -709,7 +709,7 @@ const Index = () => {
                                 <p className="text-xs uppercase tracking-wider text-muted-foreground font-medium">Improvements Made</p>
                                 <ul className="space-y-1">
                                   {improvements.map((improvement, i) => (
-                                    <motion.li 
+                                    <motion.li
                                       key={i}
                                       initial={{ opacity: 0, x: -10 }}
                                       animate={{ opacity: 1, x: 0 }}
@@ -726,13 +726,13 @@ const Index = () => {
                           </div>
                         </motion.div>
                       ) : (
-                        <motion.div 
+                        <motion.div
                           key="empty"
                           className="flex flex-col items-center justify-center h-full text-center"
                           initial={{ opacity: 0 }}
                           animate={{ opacity: 1 }}
                         >
-                          <motion.div 
+                          <motion.div
                             className="w-20 h-20 rounded-2xl bg-secondary/50 flex items-center justify-center mb-4"
                             animate={{ y: [0, -5, 0] }}
                             transition={{ duration: 2, repeat: Infinity }}
@@ -759,7 +759,7 @@ const Index = () => {
                 >
                   {isLoading ? (
                     <>
-                      <motion.div 
+                      <motion.div
                         className="w-5 h-5 rounded-full border-2 border-background border-t-transparent"
                         animate={{ rotate: 360 }}
                         transition={{ duration: 1, repeat: Infinity, ease: "linear" }}
@@ -786,7 +786,7 @@ const Index = () => {
       {/* Features Section */}
       <section id="features" className="py-24 px-6 relative z-10">
         <div className="container mx-auto max-w-6xl">
-          <motion.div 
+          <motion.div
             className="text-center mb-16"
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
@@ -794,7 +794,7 @@ const Index = () => {
           >
             <span className="text-xs font-medium uppercase tracking-wider text-muted-foreground mb-4 block">Features</span>
             <h2 className="font-display text-4xl md:text-5xl lg:text-6xl font-bold mb-4">
-              Why Choose <span className="text-gradient-animated">Humanizer.ai</span>
+              Why Choose <span className="text-gradient-animated">RAW.AI</span>
             </h2>
             <p className="text-muted-foreground max-w-2xl mx-auto text-lg">
               Transform AI content into natural, reader-friendly writing with our advanced technology.
@@ -820,7 +820,7 @@ const Index = () => {
       <section id="examples" className="py-24 px-6 relative z-10">
         <div className="absolute inset-0 bg-gradient-to-b from-transparent via-card/30 to-transparent" />
         <div className="container mx-auto max-w-6xl relative z-10">
-          <motion.div 
+          <motion.div
             className="text-center mb-16"
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
@@ -837,7 +837,7 @@ const Index = () => {
 
           <div className="grid lg:grid-cols-2 gap-8">
             {/* Original */}
-            <motion.div 
+            <motion.div
               className="p-8 rounded-2xl bg-card/50 border border-destructive/30"
               initial={{ opacity: 0, x: -30 }}
               whileInView={{ opacity: 1, x: 0 }}
@@ -857,7 +857,7 @@ const Index = () => {
             </motion.div>
 
             {/* Humanized */}
-            <motion.div 
+            <motion.div
               className="p-8 rounded-2xl bg-card/50 border border-success/30"
               initial={{ opacity: 0, x: 30 }}
               whileInView={{ opacity: 1, x: 0 }}
@@ -882,7 +882,7 @@ const Index = () => {
       {/* How It Works */}
       <section className="py-24 px-6 relative z-10">
         <div className="container mx-auto max-w-5xl">
-          <motion.div 
+          <motion.div
             className="text-center mb-16"
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
@@ -912,7 +912,7 @@ const Index = () => {
                 <span className="absolute top-6 right-6 text-6xl font-bold text-foreground/5 group-hover:text-foreground/10 transition-colors">
                   {step.num}
                 </span>
-                <motion.div 
+                <motion.div
                   className="w-12 h-12 rounded-xl bg-foreground/10 flex items-center justify-center mb-6"
                   whileHover={{ scale: 1.1, rotate: 5 }}
                 >
@@ -930,7 +930,7 @@ const Index = () => {
       <section className="py-24 px-6 relative z-10 overflow-hidden">
         <div className="absolute inset-0 bg-foreground" />
         <div className="container mx-auto max-w-6xl relative z-10">
-          <motion.div 
+          <motion.div
             className="text-center mb-16"
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
@@ -983,13 +983,13 @@ const Index = () => {
       {/* Pricing */}
       <section id="pricing" className="py-24 px-6 relative z-10">
         <div className="container mx-auto max-w-6xl">
-          <motion.div 
+          <motion.div
             className="text-center mb-16"
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
           >
-            <motion.span 
+            <motion.span
               className="inline-flex items-center gap-2 text-xs font-medium uppercase tracking-wider text-muted-foreground mb-4 px-4 py-2 bg-card/50 rounded-full border border-border/30"
               initial={{ opacity: 0, scale: 0.9 }}
               whileInView={{ opacity: 1, scale: 1 }}
@@ -1023,15 +1023,15 @@ const Index = () => {
                 {plan.popular && (
                   <div className="absolute -inset-px rounded-3xl bg-gradient-to-b from-foreground/30 via-foreground/10 to-foreground/5 blur-sm" />
                 )}
-                
+
                 <div className={cn(
                   "relative h-full p-8 rounded-3xl border-2 transition-all duration-300 backdrop-blur-sm",
-                  plan.popular 
-                    ? "bg-foreground text-background border-foreground shadow-2xl shadow-foreground/20" 
+                  plan.popular
+                    ? "bg-foreground text-background border-foreground shadow-2xl shadow-foreground/20"
                     : "bg-card/60 border-border/50 hover:border-foreground/40 hover:bg-card/80 hover:shadow-xl hover:shadow-foreground/5"
                 )}>
                   {plan.popular && (
-                    <motion.div 
+                    <motion.div
                       className="absolute -top-4 left-1/2 -translate-x-1/2"
                       initial={{ opacity: 0, y: -10 }}
                       whileInView={{ opacity: 1, y: 0 }}
@@ -1044,7 +1044,7 @@ const Index = () => {
                       </div>
                     </motion.div>
                   )}
-                  
+
                   {/* Plan name & description */}
                   <div className="mb-6">
                     <h3 className={cn(
@@ -1058,7 +1058,7 @@ const Index = () => {
                       {plan.description}
                     </p>
                   </div>
-                  
+
                   {/* Price */}
                   <div className="mb-8 pb-8 border-b border-current/10">
                     <div className="flex items-baseline gap-2">
@@ -1082,7 +1082,7 @@ const Index = () => {
                       )}
                     </div>
                     {plan.originalPrice && (
-                      <motion.div 
+                      <motion.div
                         className={cn(
                           "inline-flex items-center gap-1.5 mt-3 px-3 py-1 rounded-full text-xs font-semibold",
                           plan.popular ? "bg-background/20 text-background" : "bg-green-500/10 text-green-600 dark:text-green-400"
@@ -1097,12 +1097,12 @@ const Index = () => {
                       </motion.div>
                     )}
                   </div>
-                  
+
                   {/* Features */}
                   <ul className="space-y-4 mb-8">
                     {plan.features.map((feature, j) => (
-                      <motion.li 
-                        key={j} 
+                      <motion.li
+                        key={j}
                         className="flex items-start gap-3"
                         initial={{ opacity: 0, x: -10 }}
                         whileInView={{ opacity: 1, x: 0 }}
@@ -1127,15 +1127,15 @@ const Index = () => {
                       </motion.li>
                     ))}
                   </ul>
-                  
+
                   {/* CTA Button */}
-                  <MagneticButton 
-                    variant={plan.popular ? "secondary" : "primary"} 
-                    size="lg" 
+                  <MagneticButton
+                    variant={plan.popular ? "secondary" : "primary"}
+                    size="lg"
                     className={cn(
                       "w-full font-semibold",
-                      plan.popular 
-                        ? "bg-background text-foreground hover:bg-background/90 shadow-lg" 
+                      plan.popular
+                        ? "bg-background text-foreground hover:bg-background/90 shadow-lg"
                         : "hover:shadow-lg"
                     )}
                     onClick={(e) => {
@@ -1165,7 +1165,7 @@ const Index = () => {
           </div>
 
           {/* Trust badge */}
-          <motion.div 
+          <motion.div
             className="text-center mt-12"
             initial={{ opacity: 0 }}
             whileInView={{ opacity: 1 }}
@@ -1183,7 +1183,7 @@ const Index = () => {
       {/* CTA Section */}
       <section className="py-24 px-6 relative z-10">
         <div className="absolute inset-0 bg-gradient-to-t from-card/50 to-transparent" />
-        <motion.div 
+        <motion.div
           className="container mx-auto max-w-3xl text-center relative z-10"
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -1225,7 +1225,7 @@ const Index = () => {
                 Transform AI text into authentic, human-like content effortlessly.
               </p>
             </div>
-            
+
             {[
               { title: 'Product', links: ['AI Humanizer', 'AI Detector', 'Pricing', 'API'] },
               { title: 'Company', links: ['About', 'Blog', 'Careers', 'Contact'] },
@@ -1245,16 +1245,16 @@ const Index = () => {
               </div>
             ))}
           </div>
-          
+
           <div className="pt-8 border-t border-border/30 flex flex-col md:flex-row items-center justify-between gap-4">
             <p className="text-sm text-muted-foreground">
               © 2024 Humanizer.ai. All rights reserved.
             </p>
             <div className="flex items-center gap-6">
               {['twitter', 'github', 'linkedin'].map((social) => (
-                <motion.a 
+                <motion.a
                   key={social}
-                  href="#" 
+                  href="#"
                   className="text-muted-foreground hover:text-foreground transition-colors"
                   whileHover={{ scale: 1.1 }}
                   whileTap={{ scale: 0.95 }}
@@ -1309,8 +1309,8 @@ const Index = () => {
                 </li>
               ))}
             </ul>
-            <MagneticButton 
-              size="lg" 
+            <MagneticButton
+              size="lg"
               className="w-full"
               onClick={() => {
                 setPricingModal({ open: false, plan: null });
