@@ -8,9 +8,51 @@ import { useToast } from '@/hooks/use-toast';
 import { useAuth } from '@/contexts/AuthContext';
 import { cn } from '@/lib/utils';
 
+interface RazorpayOptions {
+  key: string;
+  amount: number;
+  currency: string;
+  name: string;
+  description: string;
+  order_id: string;
+  handler: (response: RazorpayPaymentResponse) => Promise<void>;
+  prefill: {
+    email: string;
+  };
+  theme: {
+    color: string;
+  };
+  modal: {
+    ondismiss: () => void;
+  };
+}
+
+interface RazorpayPaymentResponse {
+  razorpay_order_id: string;
+  razorpay_payment_id: string;
+  razorpay_signature: string;
+}
+
+interface RazorpayFailureResponse {
+  error: {
+    code: string;
+    description: string;
+    source: string;
+    step: string;
+    reason: string;
+    metadata: {
+      order_id: string;
+      payment_id: string;
+    };
+  };
+}
+
 declare global {
   interface Window {
-    Razorpay: any;
+    Razorpay: new (options: RazorpayOptions) => {
+      open: () => void;
+      on: (event: string, callback: (response: RazorpayFailureResponse) => void) => void;
+    };
   }
 }
 
@@ -137,7 +179,7 @@ export const UpgradeModal = ({ isOpen, onClose, plan, onSuccess }: UpgradeModalP
         name: 'RAW.AI',
         description: `${details.name} Plan - Monthly Subscription`,
         order_id: orderData.orderId,
-        handler: async (response: any) => {
+        handler: async (response: RazorpayPaymentResponse) => {
           console.log('Payment successful:', response);
 
           // Verify payment
@@ -196,7 +238,7 @@ export const UpgradeModal = ({ isOpen, onClose, plan, onSuccess }: UpgradeModalP
       };
 
       const razorpay = new window.Razorpay(options);
-      razorpay.on('payment.failed', (response: any) => {
+      razorpay.on('payment.failed', (response: RazorpayFailureResponse) => {
         console.error('Payment failed:', response.error);
         toast({
           title: 'Payment Failed',
