@@ -1,6 +1,14 @@
-// @ts-nocheck
+// Deno-compatible import handling for Supabase functions
+// @ts-expect-error Deno import
 import { serve } from "https://deno.land/std@0.168.0/http/server.ts";
+// @ts-expect-error Deno import
 import { createClient } from "https://esm.sh/@supabase/supabase-js@2";
+
+declare const Deno: {
+  env: {
+    get(key: string): string | undefined;
+  };
+};
 
 const corsHeaders = {
   'Access-Control-Allow-Origin': '*',
@@ -75,7 +83,7 @@ serve(async (req: Request) => {
         .eq('user_id', userId)
         .gte('created_at', startOfMonth.toISOString());
 
-      const currentUsage = usageData?.reduce((sum: number, log: any) => sum + (log.words_count || 0), 0) || 0;
+      const currentUsage = usageData?.reduce((sum: number, log: { words_count?: number }) => sum + (log.words_count || 0), 0) || 0;
       const planLimit = PLAN_LIMITS[userPlan];
 
       console.log(`User ${userId} (${userPlan}): ${currentUsage}/${planLimit} words used`);
@@ -259,7 +267,8 @@ IMPORTANT RULES:
     }
 
     const result = JSON.parse(toolCall.function.arguments);
-    let { humanizedText, humanScore, improvements } = result;
+    let { humanizedText } = result;
+    const { humanScore, improvements } = result;
 
     // Safety checks for response format
     if (!humanizedText && result.humanisedText) humanizedText = result.humanisedText;
