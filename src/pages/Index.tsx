@@ -216,8 +216,8 @@ const Index = () => {
       const hasShownFeedback = localStorage.getItem('hasShownHumanizerFeedback');
       if (!hasShownFeedback) {
         openModal('generic-success', {
-          title: 'Humanization Success!',
-          message: 'Your content has been perfectly humanized. Enjoy your publication-ready text!'
+          title: 'Intelligence Humanized',
+          message: 'First processing successful. Your content has been stripped of AI signatures and optimized for human-like flow.'
         });
         localStorage.setItem('hasShownHumanizerFeedback', 'true');
       } else {
@@ -268,49 +268,49 @@ const Index = () => {
   const featuresList = [
     {
       icon: Award,
-      title: "Publication-Ready",
-      description: "Polish drafts into clear, coherent, brand-safe prose with professional tone.",
-      details: "Our advanced algorithms analyze your content structure, tone, and style to ensure it meets professional publishing standards. Perfect for blogs, articles, and business communications.",
+      title: "Algorithmic Integrity",
+      description: "Polish synthetic drafts into coherent, brand-safe prose with elite technical precision.",
+      details: "Our proprietary algorithms analyze structural patterns, tone, and syntactic density to ensure your content meets the highest standards of professional publishing and academic rigor.",
     },
     {
       icon: Target,
-      title: "Style Control",
-      description: "Match your brand voice with adjustable style while preserving intent.",
-      details: "Choose from multiple writing styles including academic, business, creative, and casual. Fine-tune the output to perfectly match your brand's unique voice.",
+      title: "Granular Control",
+      description: "Maintain total authority over tone and vocabulary while preserving core intent.",
+      details: "Select from specialized processing modes including Academic, Creative, and Executive. Fine-tune the output to align perfectly with your unique institutional voice.",
     },
     {
       icon: Globe,
-      title: "Multi-Language",
-      description: "Paste text in your preferred language and get refined output.",
-      details: "Support for 50+ languages with automatic language detection. Humanize content in English, Spanish, French, German, and many more.",
+      title: "Global Infrastructure",
+      description: "Seamless processing for 50+ languages with neural-level translation accuracy.",
+      details: "Enterprise-grade support for multi-language pipelines with automatic dialect detection. Refine content in English, Spanish, Mandarin, German, and beyond.",
     },
     {
       icon: Brain,
-      title: "Smart Rewriting",
-      description: "We rewrite into fluent, authentic content while keeping meaning.",
-      details: "Our AI doesn't just swap words—it understands context and rewrites sentences for natural flow while preserving your original message and intent.",
+      title: "Contextual Rewriting",
+      description: "Neural-mapped restructuring that captures the nuance of human experience.",
+      details: "We don't just substitute synonyms—our system remaps the semantic relationships within your text to ensure natural flow and authentic engagement.",
     },
     {
       icon: Zap,
-      title: "Boost SEO",
-      description: "Improve SEO with proper keywords and enhanced article quality.",
-      details: "Optimized for search engines with natural keyword integration, improved readability scores, and content that ranks higher on Google.",
+      title: "SEO Optimization",
+      description: "Amplify search visibility with natural keyword clusters and enhanced readability.",
+      details: "Engineered for discoverability. Our output integrates search-critical phrases organically, improving SERP rankings while maintaining 100% human readability scores.",
     },
     {
       icon: Shield,
-      title: "Undetectable",
-      description: "Bypass all major AI detection tools with confidence.",
-      details: "Tested against GPTZero, Turnitin, Copyleaks, Originality AI, and more. Our output consistently achieves 95%+ human scores.",
+      title: "Bypass Infrastructure",
+      description: "Consistently circumvent every major AI detection platform with confidence.",
+      details: "Stress-tested against GPTZero, Originality AI, Turnitin, and Copyleaks. Our output architecture is designed to remain invisible to even the most rigorous detection nodes.",
     },
   ];
 
   const pricingPlans = [
     {
-      name: "Free",
+      name: "Lite",
       price: "$0",
-      description: "Perfect for getting started",
-      features: ["5,000 words monthly limit", "30 words max (Guest)", "Lite mode only", "Basic AI detection"],
-      cta: "Current Plan",
+      description: "Initialized bypass capabilities",
+      features: ["5,000 words monthly allocation", "Trial detection bypass", "Standard processing speed", "Community support"],
+      cta: "Current Tier",
       popular: false,
       planId: 'free' as const,
     },
@@ -318,9 +318,9 @@ const Index = () => {
       name: "Pro",
       price: "$5",
       originalPrice: "$10",
-      description: "For serious content creators",
-      features: ["Unlimited words", "Pro humanization mode", "Advanced AI detection", "SEO optimization", "Priority support", "API access"],
-      cta: "Upgrade to Pro",
+      description: "Advanced humanization infrastructure",
+      features: ["Unlimited processing volume", "Full humanization spectrum", "Deep-scan AI detection", "SEO-cluster integration", "Executive-tier support", "API node access"],
+      cta: "Elevate to Pro",
       popular: true,
       planId: 'pro' as const,
     },
@@ -328,9 +328,9 @@ const Index = () => {
       name: "Ultra",
       price: "$10",
       originalPrice: "$20",
-      description: "For power users & teams",
-      features: ["Everything in Pro", "Ultra humanization mode", "99.9% undetectable guarantee", "White-label options", "Dedicated support", "Custom integrations"],
-      cta: "Upgrade to Ultra",
+      description: "Unrestricted mission-critical power",
+      features: ["Everything in Pro Tier", "Ultra-deep stealth mode", "99.9% bypass guarantee", "White-label enterprise ops", "Unlimited API throughput", "Dedicated technical lead"],
+      cta: "Activate Ultra",
       popular: false,
       planId: 'ultra' as const,
     },
