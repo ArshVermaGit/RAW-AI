@@ -1,9 +1,9 @@
 import { motion } from 'framer-motion';
-import { Zap, AlertTriangle, Crown, Infinity } from 'lucide-react';
+import { Zap, AlertTriangle, Crown } from 'lucide-react';
 import { Progress } from '@/components/ui/progress';
 import { cn } from '@/lib/utils';
 import { useUsage } from '@/hooks/useUsage';
-import { useAuth } from '@/contexts/AuthContext';
+import { useAuth } from '@/hooks/useAuth';
 
 interface UsageIndicatorProps {
   compact?: boolean;
