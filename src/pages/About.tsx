@@ -109,7 +109,7 @@ const About = () => {
               className="p-6 rounded-2xl border border-border bg-card/50 backdrop-blur-sm text-center group hover:border-primary/30 hover:shadow-xl hover:shadow-primary/5 transition-all duration-300 hover:-translate-y-2"
             >
               <div
-                className="w-14 h-14 mx-auto mb-4 rounded-xl bg-primary/10 flex items-center justify-center group-hover:bg-primary/20 transition-colors group-hover:rotate-6 transition-transform"
+                className="w-14 h-14 mx-auto mb-4 rounded-xl bg-primary/10 flex items-center justify-center group-hover:bg-primary/20 group-hover:rotate-6 transition-all"
               >
                 <skill.icon className="w-7 h-7 text-primary" />
               </div>
