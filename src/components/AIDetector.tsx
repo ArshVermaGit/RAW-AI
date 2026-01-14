@@ -41,7 +41,7 @@ export const AIDetector = () => {
   const { openModal } = useModals();
   const navigate = useNavigate();
   const [loadingStep, setLoadingStep] = useState(0);
-  const loadingSteps = ['Analyzing context...', 'Scanning patterns...', 'Calculating probability...', 'Finalizing report...'];
+  const loadingSteps = ['Reading your text...', 'Making it smooth...', 'Adding a human touch...', 'Almost there...'];
   const [hasShownFirstUseFeedback, setHasShownFirstUseFeedback] = useState(false);
 
   const wordCount = inputText.trim().split(/\s+/).filter(w => w).length;
@@ -90,23 +90,18 @@ export const AIDetector = () => {
       if (error) throw error;
 
       setResult(data);
-      toast({
-        title: "Analysis Complete",
-        description: `Detection score: ${data.overallScore}% AI probability`,
-      });
-
-      // Show feedback modal for first usage
+      
       const hasShownFeedback = localStorage.getItem('hasShownDetectorFeedback');
       if (!hasShownFeedback) {
         openModal('generic-success', {
-          title: 'Deep Scan Initialized',
-          message: 'First analysis complete. Our algorithms have successfully mapped the structural patterns and origin probability of your content.'
+          title: 'Analysis Done!',
+          message: 'Your first scan is finished. We\'ve looked at the patterns and the style of your writing to see how it looks.'
         });
         localStorage.setItem('hasShownDetectorFeedback', 'true');
       } else {
         toast({
-          title: "Analysis Complete",
-          description: `Detection score: ${data.overallScore}% AI probability`,
+          title: "Scan Finished",
+          description: `This looks like it has a ${data.overallScore}% chance of being AI.`,
         });
       }
     } catch (err: unknown) {
@@ -179,8 +174,8 @@ export const AIDetector = () => {
                 <Shield className="w-5 h-5 text-foreground" />
               </div>
               <div>
-                <h3 className="text-sm font-semibold">AI Content Detector</h3>
-                <p className="text-xs text-muted-foreground">Unlimited • No restrictions</p>
+                <h3 className="text-sm font-semibold">AI Checker</h3>
+                <p className="text-xs text-muted-foreground">Free and unlimited</p>
               </div>
             </div>
             <div className="flex items-center gap-6">
@@ -199,7 +194,7 @@ export const AIDetector = () => {
                 </div>
                 <div className="flex flex-col">
                   <span className="text-xs font-bold text-foreground">{wordCount} / 30 words</span>
-                  <span className="text-[10px] text-muted-foreground uppercase tracking-widest">Min. Required</span>
+                  <span className="text-[10px] text-muted-foreground uppercase tracking-widest">Words needed</span>
                 </div>
               </div>
             </div>
@@ -210,7 +205,7 @@ export const AIDetector = () => {
               <div className="flex items-center justify-between p-4 border-b border-border/30">
                 <div className="flex items-center gap-2">
                   <FileText className="w-4 h-4 text-muted-foreground" />
-                  <span className="text-sm font-semibold tracking-tight">Text to Analyze</span>
+                  <span className="text-sm font-semibold tracking-tight">Your text</span>
                 </div>
                 {inputText && (
                   <Button 
@@ -251,7 +246,7 @@ export const AIDetector = () => {
                 {result && (
                   <Button variant="ghost" size="sm" onClick={handleCopy} className="h-8 gap-2 rounded-full">
                     {copied ? <Check className="w-4 h-4" /> : <Copy className="w-4 h-4" />}
-                    {copied ? 'Copied!' : 'Copy Report'}
+                    {copied ? 'Copied!' : 'Copy results'}
                   </Button>
                 )}
               </div>
@@ -279,7 +274,7 @@ export const AIDetector = () => {
                       >
                         {loadingSteps[loadingStep]}
                       </motion.p>
-                      <p className="text-xs text-muted-foreground font-medium uppercase tracking-widest">Deep Scan in Progress</p>
+                      <p className="text-xs text-muted-foreground font-medium uppercase tracking-widest">Looking for patterns</p>
                     </div>
                     <div className="w-48 h-1 bg-secondary rounded-full overflow-hidden">
                       <motion.div 
@@ -310,14 +305,14 @@ export const AIDetector = () => {
                           </div>
                           <div>
                             <p className={cn("text-2xl lg:text-3xl font-display font-bold capitalize mb-1", getVerdictColor(result.verdict))}>
-                              {result.verdict === 'ai' ? 'AI Generated' : result.verdict === 'mixed' ? 'Mixed Content' : 'Human Written'}
+                              {result.verdict === 'ai' ? 'AI Written' : result.verdict === 'mixed' ? 'A bit of both' : 'Human Written'}
                             </p>
-                            <p className="text-sm font-medium text-muted-foreground/80">{result.confidence}% confidence score</p>
+                            <p className="text-sm font-medium text-muted-foreground/80">{result.confidence}% sure</p>
                           </div>
                         </div>
                         <div className="text-center">
                           <p className="text-5xl lg:text-6xl font-display font-bold">{result.overallScore}<span className="text-2xl opacity-30">%</span></p>
-                          <p className="text-[10px] uppercase tracking-widest text-muted-foreground font-bold mt-1">AI Probability</p>
+                          <p className="text-[10px] uppercase tracking-widest text-muted-foreground font-bold mt-1">AI Score</p>
                         </div>
                       </div>
                       <div className="h-3 bg-secondary/30 rounded-full overflow-hidden">
@@ -357,7 +352,7 @@ export const AIDetector = () => {
                       <div className="space-y-3">
                         <button onClick={() => setShowSentences(!showSentences)} className="flex items-center gap-2 text-xs font-bold text-muted-foreground hover:text-foreground transition-colors uppercase">
                           <ChevronDown className={cn("w-4 h-4 transition-transform", showSentences && "rotate-180")} />
-                          Sentence Breakdown ({result.sentenceAnalysis.length})
+                          Sentence Details ({result.sentenceAnalysis.length})
                         </button>
                         {showSentences && (
                           <div className="space-y-2">
@@ -388,8 +383,8 @@ export const AIDetector = () => {
                 ) : (
                   <div className="flex flex-col items-center justify-center h-full text-center">
                     <Shield className="w-12 h-12 text-muted-foreground/30 mb-4" />
-                    <p className="text-muted-foreground">Detection results will appear here</p>
-                    <p className="text-xs text-muted-foreground mt-1">Paste at least 30 words to begin</p>
+                    <p className="text-muted-foreground">Your results will show up here</p>
+                    <p className="text-xs text-muted-foreground mt-1">Paste at least 30 words to start</p>
                   </div>
                 )}
               </div>
@@ -403,10 +398,10 @@ export const AIDetector = () => {
               disabled={isAnalyzing || wordCount < 30} 
               className="w-full sm:w-auto min-w-[220px]"
             >
-              {isAnalyzing ? "Processing..." : (
+              {isAnalyzing ? "One moment..." : (
                 <>
                   {!user ? <Lock className="w-4 h-4 mr-2" /> : <Shield className="w-5 h-5 mr-2" />}
-                  {!user ? "Sign in to Detect" : "Detect AI Content"}
+                  {!user ? "Sign in to check" : "Check for AI"}
                 </>
               )}
             </MagneticButton>
