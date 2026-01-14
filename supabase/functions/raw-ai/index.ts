@@ -103,10 +103,10 @@ serve(async (req: Request) => {
         });
       }
     } else {
-      // For non-authenticated users, apply a per-request limit
-      if (wordsCount > 200) {
+      // For non-authenticated users, apply a very strict per-request limit to prevent bypassing monthly limits
+      if (wordsCount > 30) {
         return new Response(JSON.stringify({
-          error: "Free users are limited to 200 words per request. Please sign up for more!",
+          error: "Guest users are limited to 30 words per request. Please sign up to unlock 5,000 free words!",
           requiresAuth: true
         }), {
           status: 401,
