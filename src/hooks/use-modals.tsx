@@ -7,6 +7,7 @@ export type ModalType =
   | 'payment-success' 
   | 'payment-failed' 
   | 'payment-canceled'
+  | 'payment-verifying'
   | 'payment-verification-failed'
   | 'order-failed'
   | 'limit-reached' 
