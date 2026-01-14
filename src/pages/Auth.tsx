@@ -139,9 +139,9 @@ const Auth = () => {
               RAW<span className="text-muted-foreground">.AI</span>
             </span>
           </motion.div>
-          <h1 className="text-3xl md:text-4xl font-bold mb-4 tracking-tight">Unlock AI Humanization</h1>
+          <h1 className="text-3xl md:text-4xl font-bold mb-4 tracking-tight">Welcome back</h1>
           <p className="text-muted-foreground text-lg max-w-sm mx-auto">
-            Join thousands of creators transforming AI text into human excellence.
+            Join thousands of writers who are making their AI content feel real.
           </p>
         </motion.div>
 
@@ -157,9 +157,9 @@ const Auth = () => {
             <div className="space-y-8 relative z-10">
               <div className="grid grid-cols-1 gap-4">
                 {[
-                  { icon: ShieldCheck, text: "99.9% Undetectable Guarantee" },
-                  { icon: Zap, text: "Instant Humanization Results" },
-                  { icon: Globe, text: "Global Language Support" }
+                  { icon: ShieldCheck, text: "Designed to feel 100% human" },
+                  { icon: Zap, text: "Quick and easy results" },
+                  { icon: Globe, text: "Works in every language" }
                 ].map((item, i) => (
                   <motion.div 
                     key={i}
@@ -198,7 +198,7 @@ const Auth = () => {
                   )}
                 </Button>
                 <p className="text-center text-[10px] uppercase tracking-[0.2em] font-black text-muted-foreground/40 mt-6">
-                  Secure OAuth 2.0 Authorization
+                  Secure login with Google
                 </p>
               </div>
             </div>
