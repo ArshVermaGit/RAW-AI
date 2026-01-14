@@ -1,7 +1,7 @@
 import { motion } from 'framer-motion';
 import { Cpu, Sparkles, Zap, Crown, Lock } from 'lucide-react';
 import { cn } from '@/lib/utils';
-import { useAuth } from '@/contexts/AuthContext';
+import { useAuth } from '@/hooks/useAuth';
 
 export type AIModel = 
   | 'google/gemini-2.5-flash'
