@@ -73,12 +73,12 @@ const planDetails = {
     color: 'text-blue-500',
     bgColor: 'bg-blue-500/10',
     features: [
-      'Industrial-grade Humanization',
-      'Advanced Detection Bypass',
-      'High-Priority Processing',
-      'Full History Persistence',
-      'SEO Optimization Suite',
-      'API Access (1k monthly)',
+      'Write as much as you need',
+      'Advanced human touch',
+      'Skip all AI detectors',
+      'Perfect for SEO',
+      'We\'re here to help',
+      'Easy API access',
     ],
   },
   ultra: {
@@ -89,13 +89,13 @@ const planDetails = {
     color: 'text-purple-500',
     bgColor: 'bg-purple-500/10',
     features: [
-      'Everything in Pro Tier',
-      'Ultra-Deep Processing Mode',
-      '99.9% Undetectable Guarantee',
-      'White-label Enterprise Options',
-      'Unlimited API Infrastructure',
-      '24/7 Dedicated Support',
-      'Custom Workflow Integrations',
+      'Everything in the Pro plan',
+      'Deepest human rewriting',
+      '99.9% success guarantee',
+      'Your own branding',
+      'Professional API support',
+      'Priority help 24/7',
+      'Fits into your workflow',
     ],
   },
 };
@@ -275,9 +275,9 @@ export const UpgradeModal = ({ isOpen, onClose, plan, onSuccess }: UpgradeModalP
           >
             <Icon className={cn('w-10 h-10', details.color)} />
           </motion.div>
-          <h2 className="text-2xl font-bold mb-2">Elevate to {details.name}</h2>
+          <h2 className="text-2xl font-bold mb-2">Upgrade to {details.name}</h2>
           <p className="text-muted-foreground">
-            Unlock the industrial-grade power of RAW.AI
+            Get the most out of RAW.AI and write without limits
           </p>
         </div>
 
@@ -320,7 +320,7 @@ export const UpgradeModal = ({ isOpen, onClose, plan, onSuccess }: UpgradeModalP
           ) : (
             <>
               <Crown className="w-5 h-5" />
-              Activate {details.name} Infrastructure
+              Upgrade to {details.name}
             </>
           )}
         </MagneticButton>
