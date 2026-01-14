@@ -1,6 +1,23 @@
 import React, { createContext, useContext, useState, ReactNode } from 'react';
 
-type ModalType = 'login-success' | 'login-error' | 'signup-success' | 'forgot-sent' | 'reset-success' | 'pricing-pro' | 'pricing-ultra' | 'payment-success' | 'payment-failed' | 'limit-reached' | 'auth-required' | 'generic-success' | 'generic-error';
+export type ModalType = 
+  | 'login-success' 
+  | 'login-error' 
+  | 'signup-success' 
+  | 'forgot-sent' 
+  | 'reset-success' 
+  | 'pricing-pro' 
+  | 'pricing-ultra' 
+  | 'payment-success' 
+  | 'payment-failed' 
+  | 'limit-reached' 
+  | 'auth-required' 
+  | 'logout-confirm'
+  | 'subscription-updated'
+  | 'delete-confirm'
+  | 'welcome-new'
+  | 'generic-success' 
+  | 'generic-error';
 
 interface ModalState {
   isOpen: boolean;
