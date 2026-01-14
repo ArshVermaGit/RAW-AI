@@ -8,7 +8,8 @@
     "build": "vite build",
     "build:dev": "vite build --mode development",
     "lint": "eslint .",
-    "preview": "vite preview"
+    "preview": "vite preview",
+    "deploy:functions": "npx supabase functions deploy create-razorpay-order && npx supabase functions deploy verify-razorpay-payment"
   },
   "dependencies": {
     "@hookform/resolvers": "^3.10.0",
