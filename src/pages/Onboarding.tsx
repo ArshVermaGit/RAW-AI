@@ -34,39 +34,39 @@ const steps: OnboardingStep[] = [
   {
     id: 1,
     icon: <Wand2 className="w-8 h-8" />,
-    title: "AI-Powered Humanization",
-    subtitle: "Transform AI text instantly",
-    description: "Our advanced algorithms rewrite AI-generated content to sound naturally human, preserving your original meaning while adding authentic voice.",
+    title: "Make it Human",
+    subtitle: "Turn AI writing into something real",
+    description: "We've designed our tools to take AI-generated text and give it a natural, human touch. Your message stays the same, it just sounds more like you.",
     features: [
-      "Maintains original intent and meaning",
-      "Adds natural human writing patterns",
-      "Preserves your unique style"
+      "Keep your original message",
+      "Add natural human flow",
+      "Keep your unique voice"
     ],
     gradient: "from-foreground/20 via-foreground/10 to-transparent"
   },
   {
     id: 2,
     icon: <Shield className="w-8 h-8" />,
-    title: "Undetectable Results",
-    subtitle: "Bypass all AI detectors",
-    description: "Our technology ensures your content passes through GPTZero, Originality.ai, Turnitin, and other popular AI detection tools.",
+    title: "Written for People",
+    subtitle: "Write with total confidence",
+    description: "We help your content feel authentic so it can go wherever you need it to—without anyone questioning if it was made by a machine.",
     features: [
-      "99.9% undetectable guarantee",
-      "Works with all major detectors",
-      "Real-time detection scoring"
+      "Designed to feel 100% human",
+      "Works for every detector",
+      "See your score as you go"
     ],
     gradient: "from-foreground/15 via-foreground/5 to-transparent"
   },
   {
     id: 3,
     icon: <Zap className="w-8 h-8" />,
-    title: "Lightning Fast",
-    subtitle: "Results in seconds",
-    description: "No more waiting. Get your humanized content in seconds, not minutes. Our infrastructure is built for speed and reliability.",
+    title: "Quick and Easy",
+    subtitle: "Get it done in a flash",
+    description: "We know your time is valuable. Get your writing ready in seconds, so you can focus on the things that matter most.",
     features: [
-      "Process up to 10,000 words",
-      "Instant humanization",
-      "Bulk processing available"
+      "Up to 10,000 words at once",
+      "Instant results",
+      "Easy to use"
     ],
     gradient: "from-foreground/10 via-foreground/5 to-transparent"
   },
@@ -74,12 +74,12 @@ const steps: OnboardingStep[] = [
     id: 4,
     icon: <TrendingUp className="w-8 h-8" />,
     title: "You're All Set!",
-    subtitle: "Start creating with RAW.AI",
-    description: "You're ready to transform your AI content. Start with our free tier and upgrade anytime for unlimited access.",
+    subtitle: "Welcome to RAW.AI",
+    description: "You're ready to start. Begin with our free plan and upgrade whenever you need more room to grow.",
     features: [
-      "500 free words to start",
-      "Upgrade for unlimited access",
-      "Priority support included"
+      "Start with 500 free words",
+      "Friendly support",
+      "Access to all tools"
     ],
     gradient: "from-foreground/20 via-foreground/10 to-transparent"
   }
