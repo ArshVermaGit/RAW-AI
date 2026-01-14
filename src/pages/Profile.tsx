@@ -304,7 +304,7 @@ const Profile = () => {
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ delay: 0.5 }}
                 >
-                  Profile Settings
+                  My Profile
                 </motion.h1>
                 <motion.p
                   className="text-muted-foreground text-sm"
@@ -477,7 +477,7 @@ const Profile = () => {
               transition={{ delay: 0.2 }}
             >
               <BarChart3 className="w-5 h-5 text-muted-foreground" />
-              <h3 className="text-lg font-semibold">Monthly Usage</h3>
+              <h3 className="text-lg font-semibold">How much I've written</h3>
             </motion.div>
 
             {loadingUsage ? (
@@ -492,7 +492,7 @@ const Profile = () => {
                       {monthlyUsage.toLocaleString()}
                     </div>
                     <div className="text-sm text-muted-foreground">
-                      words humanized this month
+                      words written this month
                     </div>
                   </div>
                   <div className="text-right">
@@ -517,7 +517,7 @@ const Profile = () => {
                     <Progress value={usagePercentage} className="h-2" />
                     <div className="flex justify-between text-xs text-muted-foreground">
                       <span>{monthlyUsage.toLocaleString()} used</span>
-                      <span>{(planLimit - monthlyUsage).toLocaleString()} remaining</span>
+                      <span>{(planLimit - monthlyUsage).toLocaleString()} left to go</span>
                     </div>
                   </div>
                 )}
@@ -525,7 +525,7 @@ const Profile = () => {
                 {profile?.subscribed_plan === 'free' && usagePercentage > 80 && (
                   <div className="p-4 bg-primary/10 rounded-xl border border-primary/20">
                     <p className="text-sm text-primary font-medium">
-                      You're running low on words! Upgrade to Pro for 50,000 words/month.
+                      You're running a bit low on words! Upgrade to Pro for more writing power.
                     </p>
                   </div>
                 )}
@@ -546,7 +546,7 @@ const Profile = () => {
           <div className="relative bg-card/80 backdrop-blur-xl border border-border/30 rounded-2xl p-8">
             <div className="flex items-center gap-3 mb-6">
               <CreditCard className="w-5 h-5 text-muted-foreground" />
-              <h3 className="text-lg font-semibold">Subscription History</h3>
+              <h3 className="text-lg font-semibold">Payments</h3>
             </div>
 
             {loadingHistory ? (
@@ -594,9 +594,9 @@ const Profile = () => {
                 <div className="w-16 h-16 bg-secondary/50 rounded-full flex items-center justify-center mx-auto mb-4">
                   <CreditCard className="w-8 h-8 text-muted-foreground" />
                 </div>
-                <p className="text-muted-foreground">No subscription history yet</p>
+                <p className="text-muted-foreground">You haven't upgraded yet</p>
                 <p className="text-sm text-muted-foreground mt-1">
-                  Upgrade to Pro or Ultra to unlock premium features
+                  Ready for more? Upgrade to Pro or Ultra to unlock our best features.
                 </p>
               </div>
             )}
