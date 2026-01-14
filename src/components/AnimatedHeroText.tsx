@@ -63,7 +63,7 @@ export const AnimatedHeroText = () => {
                 }}
                 transition={{
                   duration: 0.5,
-                  ease: [0.16, 1, 0.3, 1],
+                  ease: [0.16, 1, 0.3, 1] as [number, number, number, number],
                 }}
               >
                 <span className="bg-gradient-to-r from-foreground via-foreground/80 to-foreground bg-clip-text text-transparent glow-text">
