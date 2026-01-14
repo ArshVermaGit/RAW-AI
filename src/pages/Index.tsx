@@ -4,7 +4,8 @@ import { motion, AnimatePresence } from 'framer-motion';
 import {
   Copy, Check, Sparkles, ArrowRight, Zap, Shield, Brain,
   Wand2, Globe, Target, Award, Menu, X, ClipboardPaste,
-  Play, Rocket, Star, ChevronDown, Eye, FileText, Lock, Crown, LogOut, User, Settings, LucideIcon, Trash2
+  Play, Rocket, Star, ChevronDown, Eye, FileText, Lock, Crown, LogOut, User, Settings, LucideIcon, Trash2,
+  Fingerprint, Feather
 } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Textarea } from '@/components/ui/textarea';
@@ -489,32 +490,34 @@ const Index = () => {
         </div>
       </nav>
 
-      <section className="pt-44 pb-24 px-6 relative overflow-hidden grain-texture">
-        {/* Ambient Lights */}
-        <div className="ambient-light -top-[10%] -left-[10%] opacity-40" />
-        <div className="ambient-light top-[20%] -right-[20%] opacity-20" style={{ animationDelay: '-5s' } as React.CSSProperties} />
+      <section className="pt-44 pb-32 px-6 relative overflow-hidden grain-texture">
+        {/* Soft Organic Background */}
+        <div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_0%,rgba(0,0,0,0.03)_0%,transparent_70%)] dark:bg-[radial-gradient(circle_at_50%_0%,rgba(255,255,255,0.03)_0%,transparent_70%)] -z-10" />
         
         <div className="container mx-auto max-w-6xl relative z-10">
           <div className="flex flex-col items-center">
             <DynamicHeroText />
 
-            <div className="mt-24 grid grid-cols-2 md:grid-cols-4 gap-8 md:gap-16 w-full max-w-4xl border-t border-border/10 pt-16">
+            <div className="mt-40 grid grid-cols-2 lg:grid-cols-4 gap-8 lg:gap-16 w-full max-w-5xl border-t border-foreground/5 pt-20">
               {[
-                { value: '99.9%', label: 'Human Score' },
-                { value: '50K+', label: 'Happy Users' },
-                { value: '10M+', label: 'Words Written' },
-                { value: '24/7', label: 'We\'re here to help' },
+                { value: '99.9%', label: 'Human Score', icon: Star },
+                { value: '50K+', label: 'Readers Reached', icon: Crown },
+                { value: '10M+', label: 'Stories Told', icon: Feather },
+                { value: '∞', label: 'Absolute Privacy', icon: Lock },
               ].map((stat, i) => (
                 <motion.div 
                   key={i} 
-                  initial={{ opacity: 0, y: 20 }}
+                  initial={{ opacity: 0, y: 10 }}
                   whileInView={{ opacity: 1, y: 0 }}
                   viewport={{ once: true }}
-                  transition={{ delay: 0.8 + i * 0.1, duration: 0.8 }}
-                  className="flex flex-col items-center md:items-start"
+                  transition={{ delay: 1.2 + i * 0.1, duration: 1 }}
+                  className="flex flex-col items-center lg:items-start group cursor-default"
                 >
-                  <div className="text-3xl md:text-4xl font-bold tracking-tighter mb-1 font-display">{stat.value}</div>
-                  <div className="text-[10px] uppercase tracking-[0.2em] font-black text-muted-foreground/30">{stat.label}</div>
+                  <div className="flex items-center gap-3 mb-3">
+                    <stat.icon className="w-4 h-4 text-muted-foreground/30 group-hover:text-foreground transition-colors" strokeWidth={1} />
+                    <div className="text-2xl md:text-3xl font-display font-medium tracking-tight mb-0">{stat.value}</div>
+                  </div>
+                  <div className="text-[10px] uppercase tracking-[0.3em] font-bold text-muted-foreground/40 font-sans">{stat.label}</div>
                 </motion.div>
               ))}
             </div>
@@ -526,20 +529,18 @@ const Index = () => {
       <section id="converter" className="pb-20 px-6 relative z-10">
         <div className="container mx-auto max-w-5xl">
           <Tabs defaultValue="humanizer" className="w-full">
-            <div className="flex justify-center mb-8">
-              <TabsList className="bg-secondary/40 backdrop-blur-xl border border-border/50 p-1.5 rounded-full h-14 w-full max-w-[400px]">
+            <div className="flex justify-center mb-20 relative group">
+              <TabsList className="relative z-10 bg-secondary/5 backdrop-blur-3xl border border-foreground/5 p-1 rounded-full h-14 w-full max-w-[400px] shadow-sm">
                 <TabsTrigger 
                   value="humanizer" 
-                  className="rounded-full flex-1 h-full font-semibold text-sm data-[state=active]:bg-foreground data-[state=active]:text-background transition-all duration-300"
+                  className="rounded-full flex-1 h-full font-bold text-[10px] uppercase tracking-[0.2em] data-[state=active]:bg-foreground data-[state=active]:text-background transition-all duration-700"
                 >
-                  <Sparkles className="w-4 h-4 mr-2" />
                   Humanizer
                 </TabsTrigger>
                 <TabsTrigger 
                   value="detector" 
-                  className="rounded-full flex-1 h-full font-semibold text-sm data-[state=active]:bg-foreground data-[state=active]:text-background transition-all duration-300"
+                  className="rounded-full flex-1 h-full font-bold text-[10px] uppercase tracking-[0.2em] data-[state=active]:bg-foreground data-[state=active]:text-background transition-all duration-700"
                 >
-                  <Shield className="w-4 h-4 mr-2" />
                   AI Detector
                 </TabsTrigger>
               </TabsList>
