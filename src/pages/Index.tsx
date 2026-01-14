@@ -833,7 +833,19 @@ const Index = () => {
                     </li>
                   ))}
                 </ul>
-                <MagneticButton variant={plan.popular ? "secondary" : "primary"} className="w-full" onClick={() => (plan.planId === 'pro' || plan.planId === 'ultra') ? openModal(plan.planId === 'pro' ? 'pricing-pro' : 'pricing-ultra') : !user && navigate('/auth')}>
+                <MagneticButton 
+                  variant={plan.popular ? "secondary" : "primary"} 
+                  className="w-full" 
+                  onClick={() => {
+                    if (!user) {
+                      navigate('/auth');
+                      return;
+                    }
+                    if (plan.planId === 'pro' || plan.planId === 'ultra') {
+                      openModal(plan.planId === 'pro' ? 'pricing-pro' : 'pricing-ultra');
+                    }
+                  }}
+                >
                   {plan.cta}
                 </MagneticButton>
               </div>
