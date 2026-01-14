@@ -54,7 +54,7 @@ export const Modal = ({ isOpen, onClose, children, title, className }: ModalProp
             exit={{ opacity: 0, scale: 0.95, y: 20 }}
             transition={{
               duration: 0.3,
-              ease: [0.16, 1, 0.3, 1]
+              ease: [0.16, 1, 0.3, 1] as [number, number, number, number]
             }}
             className={cn(
               "relative z-[101] w-full max-w-xl max-h-[90vh] overflow-auto",
