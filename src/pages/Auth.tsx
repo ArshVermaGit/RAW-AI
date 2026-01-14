@@ -10,6 +10,7 @@ import { useAuth } from '@/contexts/AuthContext';
 import { useToast } from '@/hooks/use-toast';
 import { supabase } from '@/integrations/supabase/client';
 import { z } from 'zod';
+import { useModals } from '@/hooks/use-modals';
 
 // Google Icon Component
 const GoogleIcon = () => (
@@ -42,6 +43,7 @@ const Auth = () => {
   const { user, signIn, signUp, loading } = useAuth();
   const navigate = useNavigate();
   const { toast } = useToast();
+  const { openModal } = useModals();
 
   // Handle Google Sign In
   const handleGoogleSignIn = async () => {
@@ -134,11 +136,7 @@ const Auth = () => {
         const { error } = await signIn(email, password);
         if (error) {
           if (error.message.includes('Invalid login credentials')) {
-            toast({
-              title: 'Login Failed',
-              description: 'Invalid email or password. Please try again.',
-              variant: 'destructive',
-            });
+            openModal('login-error');
           } else {
             toast({
               title: 'Error',
@@ -146,12 +144,9 @@ const Auth = () => {
               variant: 'destructive',
             });
           }
-        } else {
-          toast({
-            title: 'Welcome back! 👋',
-            description: 'You have successfully logged in.',
+          openModal('login-success', {
+            onConfirm: () => navigate('/')
           });
-          navigate('/');
         }
       } else if (mode === 'signup') {
         const { error } = await signUp(email, password, fullName);
@@ -171,11 +166,9 @@ const Auth = () => {
             });
           }
         } else {
-          toast({
-            title: '🎉 Account Created!',
-            description: 'Welcome to RAW.AI!',
+          openModal('signup-success', {
+            onConfirm: () => navigate('/onboarding')
           });
-          navigate('/onboarding');
         }
       } else if (mode === 'forgot') {
         const { error } = await supabase.auth.resetPasswordForEmail(email, {
@@ -190,10 +183,7 @@ const Auth = () => {
           });
         } else {
           setResetEmailSent(true);
-          toast({
-            title: '📧 Email Sent!',
-            description: 'Check your inbox for the password reset link.',
-          });
+          openModal('forgot-sent');
         }
       } else if (mode === 'reset') {
         const { error } = await supabase.auth.updateUser({ password });
@@ -205,13 +195,11 @@ const Auth = () => {
             variant: 'destructive',
           });
         } else {
-          toast({
-            title: '✓ Password Updated!',
-            description: 'Your password has been successfully changed.',
+          openModal('reset-success', {
+            onConfirm: () => navigate('/auth')
           });
           // Clear the hash and redirect
           window.location.hash = '';
-          navigate('/');
         }
       }
     } finally {
