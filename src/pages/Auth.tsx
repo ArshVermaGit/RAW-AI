@@ -167,7 +167,10 @@ const Auth = () => {
           }
         } else {
           openModal('signup-success', {
-            onConfirm: () => navigate('/onboarding')
+            onConfirm: () => {
+              navigate('/onboarding');
+              // The onboarding page can handle further welcome logic
+            }
           });
         }
       } else if (mode === 'forgot') {
