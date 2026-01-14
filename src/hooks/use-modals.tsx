@@ -1,11 +1,6 @@
 import React, { createContext, useContext, useState, ReactNode } from 'react';
 
 export type ModalType = 
-  | 'login-success' 
-  | 'login-error' 
-  | 'signup-success' 
-  | 'forgot-sent' 
-  | 'reset-success' 
   | 'pricing-pro' 
   | 'pricing-ultra' 
   | 'payment-success' 
