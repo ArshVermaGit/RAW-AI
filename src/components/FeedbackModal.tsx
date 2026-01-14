@@ -1,13 +1,14 @@
 import { motion, AnimatePresence } from 'framer-motion';
-import { CheckCircle2, XCircle, Mail, Sparkles, PartyPopper, ArrowRight, X, Zap } from 'lucide-react';
+import { CheckCircle2, XCircle, Mail, Sparkles, PartyPopper, ArrowRight, X, Zap, LogOut, Trash2, Rocket, Heart } from 'lucide-react';
 import { Modal } from './Modal';
 import { MagneticButton } from './MagneticButton';
 import { cn } from '@/lib/utils';
+import { ModalType } from '@/hooks/use-modals';
 
 interface FeedbackModalProps {
   isOpen: boolean;
   onClose: () => void;
-  type: 'login-success' | 'login-error' | 'signup-success' | 'forgot-sent' | 'reset-success' | 'generic-success' | 'generic-error' | null;
+  type: ModalType | null;
   title?: string;
   message?: string;
   onConfirm?: () => void;
@@ -94,6 +95,42 @@ const config = {
     defaultTitle: 'Unlock Full Power',
     defaultMessage: 'Sign up for a free account to humanize more words and save your history!',
     buttonText: 'Sign Up Free',
+  },
+  'logout-confirm': {
+    icon: LogOut,
+    color: 'text-orange-500',
+    bgColor: 'bg-orange-500/10',
+    glowColor: 'from-orange-500/20',
+    defaultTitle: 'Are you sure?',
+    defaultMessage: 'You will need to sign in again to access your history and pro features.',
+    buttonText: 'Yes, Sign Out',
+  },
+  'subscription-updated': {
+    icon: Rocket,
+    color: 'text-purple-500',
+    bgColor: 'bg-purple-500/10',
+    glowColor: 'from-purple-500/20',
+    defaultTitle: 'Plan Upgraded!',
+    defaultMessage: 'Your subscription has been updated successfully. Enjoy your new limits!',
+    buttonText: 'Awesome',
+  },
+  'delete-confirm': {
+    icon: Trash2,
+    color: 'text-red-500',
+    bgColor: 'bg-red-500/10',
+    glowColor: 'from-red-500/20',
+    defaultTitle: 'Confirm Deletion',
+    defaultMessage: 'This action cannot be undone. All related data will be permanently removed.',
+    buttonText: 'Delete Forever',
+  },
+  'welcome-new': {
+    icon: Heart,
+    color: 'text-pink-500',
+    bgColor: 'bg-pink-500/10',
+    glowColor: 'from-pink-500/20',
+    defaultTitle: 'You\'re in!',
+    defaultMessage: 'Thanks for joining RAW.AI. We\'ve gifted you some initial words to get started.',
+    buttonText: 'Let\'s Go',
   },
   'generic-success': {
     icon: CheckCircle2,
