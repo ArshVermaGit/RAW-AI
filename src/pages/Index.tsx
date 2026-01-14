@@ -64,13 +64,47 @@ const Index = () => {
   
   const { openModal } = useModals();
 
-  const { user, profile, signOut, refreshProfile, session } = useAuth();
+  const { user, profile, signOut, refreshProfile, session, loading: authLoading } = useAuth();
   const navigate = useNavigate();
   const { toast } = useToast();
   const { remaining, refetch: refetchUsage, planLimit } = useUsage();
 
   // Get subscribed plan from profile
   const subscribedPlan: SubscribedPlan = profile?.subscribed_plan || 'free';
+
+  // State to track first successful humanization in this session
+  const [hasShownFirstUseFeedback, setHasShownFirstUseFeedback] = useState(false);
+
+  // Auto-prompt login on initial visit if not authenticated
+  useEffect(() => {
+    const hasPrompted = sessionStorage.getItem('hasPromptedLogin');
+    if (!user && !authLoading && !hasPrompted) {
+      openModal('auth-required', {
+        onConfirm: () => navigate('/auth')
+      });
+      sessionStorage.setItem('hasPromptedLogin', 'true');
+    }
+  }, [user, authLoading, openModal, navigate]);
+
+  // Handle onboarding sequence after login
+  useEffect(() => {
+    if (user && profile && !profile.onboarding_completed) {
+      openModal('welcome-new', {
+        onConfirm: async () => {
+          // Update profile to mark onboarding as completed
+          await supabase
+            .from('profiles')
+            .update({ onboarding_completed: true })
+            .eq('id', user.id);
+          
+          await refreshProfile();
+          
+          // Chain to pricing modal
+          openModal('pricing-pro');
+        }
+      });
+    }
+  }, [user, profile, openModal, refreshProfile]);
 
   const handleHumanize = async () => {
     if (!inputText.trim()) {
@@ -84,19 +118,12 @@ const Index = () => {
 
     const wordCount = inputText.trim().split(/\s+/).length;
 
-    // Check word limit for non-authenticated users
+    // Check authentication for all usage
     if (!user) {
-      if (wordCount > 30) {
-        openModal('auth-required', {
-          onConfirm: () => navigate('/auth')
-        });
-        toast({
-          title: "Guest Limit Reached",
-          description: "Sign up to humanize more words.",
-          variant: "destructive"
-        });
-        return;
-      }
+      openModal('auth-required', {
+        onConfirm: () => navigate('/auth')
+      });
+      return;
     }
 
     // Check remaining words for authenticated users
@@ -178,6 +205,16 @@ const Index = () => {
         title: "✨ Text Humanized!",
         description: `Human score: ${data.humanScore}% - Your text now sounds natural.`,
       });
+
+      // Show feedback modal for first usage
+      const hasShownFeedback = localStorage.getItem('hasShownHumanizerFeedback');
+      if (!hasShownFeedback) {
+        openModal('generic-success', {
+          title: 'Humanization Success!',
+          message: 'Your content has been perfectly humanized. Enjoy your publication-ready text!'
+        });
+        localStorage.setItem('hasShownHumanizerFeedback', 'true');
+      }
     } catch (error) {
       console.error('Humanization error:', error);
       toast({
@@ -564,7 +601,18 @@ const Index = () => {
                     </div>
                     <Textarea
                       value={inputText}
-                      onChange={(e) => setInputText(e.target.value)}
+                      onChange={(e) => {
+                        if (!user) {
+                          openModal('auth-required', { onConfirm: () => navigate('/auth') });
+                          return;
+                        }
+                        setInputText(e.target.value);
+                      }}
+                      onFocus={() => {
+                        if (!user) {
+                          openModal('auth-required', { onConfirm: () => navigate('/auth') });
+                        }
+                      }}
                       placeholder="Enter your AI-generated text here..."
                       className="flex-1 border-0 rounded-none bg-transparent resize-none focus:ring-0 text-base"
                     />
@@ -574,11 +622,21 @@ const Index = () => {
                           <ClipboardPaste className="w-8 h-8" />
                         </div>
                         <div className="flex flex-col sm:flex-row gap-4">
-                          <MagneticButton variant="secondary" size="lg" onClick={handlePaste} className="bg-background shadow-md">
+                          <MagneticButton 
+                            variant="secondary" 
+                            size="lg" 
+                            onClick={user ? handlePaste : () => openModal('auth-required', { onConfirm: () => navigate('/auth') })} 
+                            className="bg-background shadow-md"
+                          >
                             <ClipboardPaste className="w-4 h-4" />
                             Paste Text
                           </MagneticButton>
-                          <MagneticButton variant="ghost" size="lg" onClick={handleTrySample} className="hover:bg-secondary">
+                          <MagneticButton 
+                            variant="ghost" 
+                            size="lg" 
+                            onClick={user ? handleTrySample : () => openModal('auth-required', { onConfirm: () => navigate('/auth') })} 
+                            className="hover:bg-secondary"
+                          >
                             <Play className="w-4 h-4" />
                             Try Sample
                           </MagneticButton>
