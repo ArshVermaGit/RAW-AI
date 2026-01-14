@@ -5,7 +5,7 @@ import { Modal } from '@/components/Modal';
 import { MagneticButton } from '@/components/MagneticButton';
 import { Input } from '@/components/ui/input';
 import { useToast } from '@/hooks/use-toast';
-import { useAuth } from '@/contexts/AuthContext';
+import { useAuth } from '@/hooks/useAuth';
 import { useModals } from '@/hooks/use-modals';
 import { cn } from '@/lib/utils';
 
@@ -132,14 +132,7 @@ export const UpgradeModal = ({ isOpen, onClose, plan, onSuccess }: UpgradeModalP
   };
 
   const handlePayment = async () => {
-    if (!email || !email.includes('@')) {
-      toast({
-        title: 'Invalid email',
-        description: 'Please enter a valid email address.',
-        variant: 'destructive',
-      });
-      return;
-    }
+
 
     setIsLoading(true);
 
@@ -299,17 +292,7 @@ export const UpgradeModal = ({ isOpen, onClose, plan, onSuccess }: UpgradeModalP
           ))}
         </ul>
 
-        {/* Email Input */}
-        <div className="space-y-2">
-          <label className="text-sm font-medium">Email Address</label>
-          <Input
-            type="email"
-            placeholder="you@example.com"
-            value={email}
-            onChange={(e) => setEmail(e.target.value)}
-            className="bg-secondary/50"
-          />
-        </div>
+
 
         {/* CTA */}
         <MagneticButton
