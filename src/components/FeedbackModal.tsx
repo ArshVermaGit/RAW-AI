@@ -1,5 +1,5 @@
 import { motion, AnimatePresence } from 'framer-motion';
-import { CheckCircle2, XCircle, Mail, Sparkles, PartyPopper, ArrowRight, X, Zap, LogOut, Trash2, Rocket, Heart, Shield } from 'lucide-react';
+import { CheckCircle2, XCircle, Mail, Sparkles, PartyPopper, ArrowRight, X, Zap, LogOut, Trash2, Rocket, Heart, Shield, Loader2 } from 'lucide-react';
 import { Modal } from './Modal';
 import { MagneticButton } from './MagneticButton';
 import { cn } from '@/lib/utils';
@@ -105,6 +105,15 @@ const config = {
     defaultTitle: 'Payment Canceled',
     defaultMessage: 'The checkout window was closed. No charges were made to your account.',
     buttonText: 'Got it',
+  },
+  'payment-verifying': {
+    icon: Loader2,
+    color: 'text-blue-500',
+    bgColor: 'bg-blue-500/10',
+    glowColor: 'from-blue-500/20',
+    defaultTitle: 'Verifying Payment',
+    defaultMessage: 'We are confirming your transaction with Razorpay. This will only take a moment...',
+    buttonText: 'Wait a moment',
   },
   'payment-verification-failed': {
     icon: Shield,
