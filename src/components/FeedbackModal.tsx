@@ -1,5 +1,5 @@
 import { motion, AnimatePresence } from 'framer-motion';
-import { CheckCircle2, XCircle, Mail, Sparkles, PartyPopper, ArrowRight, X, Zap, LogOut, Trash2, Rocket, Heart } from 'lucide-react';
+import { CheckCircle2, XCircle, Mail, Sparkles, PartyPopper, ArrowRight, X, Zap, LogOut, Trash2, Rocket, Heart, Shield } from 'lucide-react';
 import { Modal } from './Modal';
 import { MagneticButton } from './MagneticButton';
 import { cn } from '@/lib/utils';
@@ -96,6 +96,33 @@ const config = {
     defaultTitle: 'Success!',
     defaultMessage: 'Your action was completed successfully.',
     buttonText: 'Continue',
+  },
+  'payment-canceled': {
+    icon: XCircle,
+    color: 'text-muted-foreground',
+    bgColor: 'bg-secondary/50',
+    glowColor: 'from-secondary/20',
+    defaultTitle: 'Payment Canceled',
+    defaultMessage: 'The checkout window was closed. No charges were made to your account.',
+    buttonText: 'Got it',
+  },
+  'payment-verification-failed': {
+    icon: Shield,
+    color: 'text-orange-500',
+    bgColor: 'bg-orange-500/10',
+    glowColor: 'from-orange-500/20',
+    defaultTitle: 'Verification Pending',
+    defaultMessage: 'Payment received but verification is taking longer than expected. Please contact support.',
+    buttonText: 'Contact Support',
+  },
+  'order-failed': {
+    icon: Zap,
+    color: 'text-red-500',
+    bgColor: 'bg-red-500/10',
+    glowColor: 'from-red-500/20',
+    defaultTitle: 'Order Creation Failed',
+    defaultMessage: 'We couldn\'t start the checkout process. Please check your internet connection and try again.',
+    buttonText: 'Try Again',
   },
   'generic-error': {
     icon: XCircle,
