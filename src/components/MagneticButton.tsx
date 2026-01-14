@@ -56,7 +56,7 @@ export const MagneticButton = forwardRef<HTMLButtonElement, MagneticButtonProps>
         className="absolute inset-0 bg-gradient-to-r from-transparent via-primary-foreground/15 to-transparent"
         initial={{ x: '-100%' }}
         whileHover={{ x: '100%' }}
-        transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
+        transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1] as [number, number, number, number] }}
       />
       
       {/* Glow layer for primary */}
