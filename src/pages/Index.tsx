@@ -947,7 +947,12 @@ const Index = () => {
                 <div className="mb-8 pb-8 border-b border-current/10">
                   <div className="flex items-baseline gap-2">
                     <span className="text-5xl font-bold">{plan.price}</span>
-                    {plan.price !== '$0' && <span className="text-base opacity-70">/mo</span>}
+                    {plan.price !== '$0' && (
+                      <div className="flex flex-col">
+                        {'originalPrice' in plan && <span className="text-sm opacity-50 line-through leading-none">{plan.originalPrice}</span>}
+                        <span className="text-base opacity-70">/mo</span>
+                      </div>
+                    )}
                   </div>
                 </div>
                 <ul className="space-y-4 mb-8">
