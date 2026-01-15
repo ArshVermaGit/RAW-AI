@@ -1,5 +1,5 @@
 import { motion } from 'framer-motion';
-import { Zap, AlertTriangle, Crown } from 'lucide-react';
+import { Zap, AlertTriangle, Crown, Infinity as InfinityIcon } from 'lucide-react';
 import { Progress } from '@/components/ui/progress';
 import { cn } from '@/lib/utils';
 import { useUsage } from '@/hooks/useUsage';
@@ -39,7 +39,7 @@ export const UsageIndicator = ({ compact = false, onUpgrade }: UsageIndicatorPro
       >
         {isUnlimited ? (
           <>
-            <Infinity className="w-3.5 h-3.5" />
+            <InfinityIcon className="w-3.5 h-3.5" />
             <span>Unlimited</span>
           </>
         ) : (
@@ -75,7 +75,7 @@ export const UsageIndicator = ({ compact = false, onUpgrade }: UsageIndicatorPro
 
       {isUnlimited ? (
         <div className="flex items-center gap-2 text-sm text-muted-foreground">
-          <Infinity className="w-4 h-4" />
+          <InfinityIcon className="w-4 h-4" />
           <span>Unlimited words with Ultra plan</span>
         </div>
       ) : (
