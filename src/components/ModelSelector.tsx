@@ -4,10 +4,9 @@ import { cn } from '@/lib/utils';
 import { useAuth } from '@/hooks/useAuth';
 
 export type AIModel = 
-  | 'google/gemini-2.5-flash'
-  | 'google/gemini-2.5-pro'
-  | 'openai/gpt-5-mini'
-  | 'openai/gpt-5';
+  | 'gpt-4o-mini'
+  | 'gpt-4o'
+  | 'o1-preview';
 
 interface ModelOption {
   id: AIModel;
@@ -21,36 +20,27 @@ interface ModelOption {
 
 const models: ModelOption[] = [
   {
-    id: 'google/gemini-2.5-flash',
-    name: 'Gemini Flash',
-    description: 'Fast & balanced',
+    id: 'gpt-4o-mini',
+    name: 'Standard v4',
+    description: 'Fast & efficient',
     icon: Zap,
     speed: 'Fast',
     quality: 'Good',
     requiredPlan: 'free',
   },
   {
-    id: 'google/gemini-2.5-pro',
-    name: 'Gemini Pro',
-    description: 'Higher quality',
+    id: 'gpt-4o',
+    name: 'Pro v4',
+    description: 'Smart & distinct',
     icon: Sparkles,
     speed: 'Medium',
     quality: 'Better',
     requiredPlan: 'pro',
   },
   {
-    id: 'openai/gpt-5-mini',
-    name: 'GPT-5 Mini',
-    description: 'OpenAI balanced',
-    icon: Cpu,
-    speed: 'Medium',
-    quality: 'Better',
-    requiredPlan: 'pro',
-  },
-  {
-    id: 'openai/gpt-5',
-    name: 'GPT-5',
-    description: 'Maximum quality',
+    id: 'o1-preview',
+    name: 'Ultra Logic',
+    description: 'Deep reasoning',
     icon: Crown,
     speed: 'Slower',
     quality: 'Best',
