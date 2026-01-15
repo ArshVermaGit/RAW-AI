@@ -234,17 +234,17 @@ export const UpgradeModal = ({ isOpen, onClose, onSuccess }: UpgradeModalProps) 
   };
 
   return (
-    <Modal isOpen={isOpen} onClose={onClose} className="max-w-[75rem] w-full bg-black/90 border-foreground/10 p-0 md:p-0 overflow-visible">
-      <div className="relative p-8 md:p-12 overflow-hidden">
+    <Modal isOpen={isOpen} onClose={onClose} className="max-w-[75rem] w-full bg-black/90 border-foreground/10 p-0 overflow-visible">
+      <div className="relative p-5 md:p-12 overflow-hidden">
         {/* Background Gradients */}
         <div className="absolute top-0 left-1/2 -translate-x-1/2 w-full h-[300px] bg-gradient-to-b from-primary/10 to-transparent pointer-events-none -z-10" />
         
         {/* Header */}
-        <div className="text-center mb-16">
+        <div className="text-center mb-8 md:mb-16">
           <motion.div 
             initial={{ opacity: 0, y: -20 }}
             animate={{ opacity: 1, y: 0 }}
-            className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-card/50 border border-border/30 text-xs font-bold uppercase tracking-widest text-muted-foreground mb-6"
+            className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-card/50 border border-border/30 text-[10px] md:text-xs font-bold uppercase tracking-widest text-muted-foreground mb-4 md:mb-6"
           >
             <Crown className="w-3 h-3 text-primary" />
             Pricing
@@ -253,14 +253,14 @@ export const UpgradeModal = ({ isOpen, onClose, onSuccess }: UpgradeModalProps) 
             initial={{ opacity: 0, y: -10 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.1 }}
-            className="text-5xl md:text-7xl font-display font-black tracking-tight mb-4 text-white"
+            className="text-3xl md:text-7xl font-display font-black tracking-tight mb-4 text-white"
           >
             Choose Your Plan
           </motion.h2>
         </div>
 
         {/* Plans Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-8 items-stretch pt-8">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-6 md:gap-8 items-stretch pt-4 md:pt-8">
           {ALL_PLANS.map((plan, i) => {
             const isCurrent = profile?.subscribed_plan === plan.id;
             const isLite = plan.id === 'free';
@@ -274,9 +274,9 @@ export const UpgradeModal = ({ isOpen, onClose, onSuccess }: UpgradeModalProps) 
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: 0.2 + i * 0.1 }}
                 className={cn(
-                  "relative flex flex-col p-8 rounded-[2.5rem] border-2 transition-all duration-500 overflow-visible",
+                  "relative flex flex-col p-6 md:p-8 rounded-[2rem] md:rounded-[2.5rem] border-2 transition-all duration-500 overflow-visible",
                   isPro 
-                    ? "bg-white text-black border-white scale-105 z-20 shadow-[0_0_50px_rgba(255,255,255,0.1)]" 
+                    ? "bg-white text-black border-white md:scale-105 z-20 shadow-[0_0_50px_rgba(255,255,255,0.1)]" 
                     : "bg-[#0A0A0A] text-white border-white/5 hover:border-white/20 z-10"
                 )}
               >
