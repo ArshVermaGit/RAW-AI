@@ -41,7 +41,7 @@ const FAQ = () => {
       <div className="absolute bottom-1/4 -right-32 w-96 h-96 bg-primary/5 rounded-full blur-3xl" />
 
       {/* Header */}
-      <header className="relative z-10 p-6 md:p-8">
+      <header className="relative z-10 p-4 md:p-8">
         <button
           onClick={() => navigate('/')}
           className="flex items-center gap-2 text-muted-foreground hover:text-foreground transition-colors group"
@@ -52,10 +52,10 @@ const FAQ = () => {
       </header>
 
       {/* Main Content */}
-      <main className="relative z-10 max-w-3xl mx-auto px-6 md:px-8 pb-20">
-        <div className="text-center mb-16">
-          <h1 className="text-4xl md:text-5xl font-bold mb-4">Frequently Asked Questions</h1>
-          <p className="text-xl text-muted-foreground">Everything you need to know about RAW.AI.</p>
+      <main className="relative z-10 max-w-3xl mx-auto px-4 md:px-8 pb-20">
+        <div className="text-center mb-12 md:mb-16">
+          <h1 className="text-3xl md:text-5xl font-bold mb-4">Frequently Asked Questions</h1>
+          <p className="text-lg md:text-xl text-muted-foreground">Everything you need to know about RAW.AI.</p>
         </div>
 
         <div className="space-y-4">
@@ -75,10 +75,10 @@ const FAQItem = ({ question, answer }: { question: string; answer: string }) => 
     <div className="rounded-2xl border border-border bg-card/30 backdrop-blur-sm overflow-hidden transition-all hover:border-primary/30">
       <button
         onClick={() => setIsOpen(!isOpen)}
-        className="w-full flex items-center justify-between p-6 text-left"
+        className="w-full flex items-center justify-between p-5 md:p-6 text-left"
       >
-        <span className="font-semibold text-lg">{question}</span>
-        <div className={`p-2 rounded-full bg-primary/10 transition-transform duration-300 ${isOpen ? 'rotate-180' : ''}`}>
+        <span className="font-semibold text-base md:text-lg pr-4">{question}</span>
+        <div className={`p-2 rounded-full bg-primary/10 transition-transform duration-300 shrink-0 ${isOpen ? 'rotate-180' : ''}`}>
           {isOpen ? <Minus className="w-4 h-4 text-primary" /> : <Plus className="w-4 h-4 text-primary" />}
         </div>
       </button>
