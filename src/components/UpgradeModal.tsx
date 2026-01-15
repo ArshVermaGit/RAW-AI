@@ -1,10 +1,8 @@
 import { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
-import { Sparkles, Rocket, Check, Loader2, Zap, Shield, Crown } from 'lucide-react';
+import { Sparkles, Rocket, Check, Loader2, Zap, Shield, Crown, Star } from 'lucide-react';
 import { Modal } from '@/components/Modal';
 import { MagneticButton } from '@/components/MagneticButton';
-import { Input } from '@/components/ui/input';
-import { useToast } from '@/hooks/use-toast';
 import { useAuth } from '@/hooks/useAuth';
 import { useModals } from '@/hooks/use-modals';
 import { cn } from '@/lib/utils';
@@ -60,61 +58,66 @@ declare global {
 interface UpgradeModalProps {
   isOpen: boolean;
   onClose: () => void;
-  plan: 'pro' | 'ultra';
+  plan?: string;
   onSuccess: (plan: 'pro' | 'ultra') => void;
 }
 
-const planDetails = {
-  pro: {
+const ALL_PLANS = [
+  {
+    id: 'free',
+    name: 'Lite',
+    price: '$0',
+    description: 'Great for a quick start',
+    features: [
+      '5,000 words every month',
+      'Basic AI bypass',
+      'Fast processing',
+      'Email support',
+    ],
+    cta: 'Current Plan',
+    popular: false,
+    buttonVariant: 'secondary' as const
+  },
+  {
+    id: 'pro',
     name: 'Pro',
     price: '$5',
-    priceNum: 5,
-    icon: Sparkles,
-    color: 'text-blue-500',
-    bgColor: 'bg-blue-500/10',
+    description: 'Perfect for serious writers',
     features: [
-      'Write as much as you need',
+      'Write unlimited words',
       'Advanced human touch',
-      'Skip all AI detectors',
-      'Perfect for SEO',
-      'We\'re here to help',
-      'Easy API access',
+      'Deep AI detection check',
+      'Better for SEO',
+      'Priority help',
+      'API access',
     ],
+    cta: 'Join Pro',
+    popular: true,
+    buttonVariant: 'primary' as const
   },
-  ultra: {
+  {
+    id: 'ultra',
     name: 'Ultra',
     price: '$10',
-    priceNum: 10,
-    icon: Rocket,
-    color: 'text-purple-500',
-    bgColor: 'bg-purple-500/10',
+    description: 'For teams and power users',
     features: [
-      'Everything in the Pro plan',
-      'Deepest human rewriting',
-      '99.9% success guarantee',
-      'Your own branding',
-      'Professional API support',
-      'Priority help 24/7',
-      'Fits into your workflow',
+      'Everything in Pro',
+      'The deepest human mode',
+      '99.9% pass guarantee',
+      'Use your own brand',
+      'Unlimited API use',
+      'Personal support',
     ],
+    cta: 'Get Ultra',
+    popular: false,
+    buttonVariant: 'secondary' as const
   },
-};
+];
 
-export const UpgradeModal = ({ isOpen, onClose, plan, onSuccess }: UpgradeModalProps) => {
-  const { user, session, refreshProfile } = useAuth();
-  const [email, setEmail] = useState('');
-  const [isLoading, setIsLoading] = useState(false);
-  const { toast } = useToast();
+export const UpgradeModal = ({ isOpen, onClose, onSuccess }: UpgradeModalProps) => {
+  const { user, session, profile, refreshProfile } = useAuth();
+  const [loadingPlan, setLoadingPlan] = useState<'pro' | 'ultra' | null>(null);
   const { openModal } = useModals();
-  const details = planDetails[plan];
-  const Icon = details.icon;
-
-  // Pre-fill email if user is logged in
-  useEffect(() => {
-    if (user?.email) {
-      setEmail(user.email);
-    }
-  }, [user]);
 
   const loadRazorpayScript = (): Promise<boolean> => {
     return new Promise((resolve) => {
@@ -130,24 +133,22 @@ export const UpgradeModal = ({ isOpen, onClose, plan, onSuccess }: UpgradeModalP
     });
   };
 
-  const handlePayment = async () => {
-
-
-    setIsLoading(true);
+  const handleUpgrade = async (planId: 'pro' | 'ultra') => {
+    if (!user) return;
+    
+    setLoadingPlan(planId);
 
     try {
-      // Load Razorpay script
       const scriptLoaded = await loadRazorpayScript();
       if (!scriptLoaded) {
         openModal('generic-error', { 
           title: 'Gateway Error', 
-          message: 'Failed to load the payment gateway. Please check your connection.' 
+          message: 'Failed to load the payment gateway.' 
         });
-        setIsLoading(false);
+        setLoadingPlan(null);
         return;
       }
 
-      // Create order
       const headers: Record<string, string> = { 'Content-Type': 'application/json' };
       if (session?.access_token) {
         headers['Authorization'] = `Bearer ${session.access_token}`;
@@ -158,36 +159,30 @@ export const UpgradeModal = ({ isOpen, onClose, plan, onSuccess }: UpgradeModalP
         {
           method: 'POST',
           headers,
-          body: JSON.stringify({ plan, email, userId: user?.id }),
+          body: JSON.stringify({ plan: planId, email: user.email, userId: user.id }),
         }
       );
 
       if (!orderResponse.ok) {
-        const error = await orderResponse.json();
-        console.error('Order creation error:', error);
-        onClose(); // Close the upgrade modal first
+        onClose();
         setTimeout(() => openModal('order-failed'), 100);
-        setIsLoading(false);
+        setLoadingPlan(null);
         return;
       }
 
       const orderData = await orderResponse.json();
-      console.log('Order created:', orderData);
 
-      // Initialize Razorpay
       const options = {
         key: orderData.keyId,
         amount: orderData.amount,
         currency: orderData.currency,
         name: 'RAW.AI',
-        description: `${details.name} Plan - Monthly Subscription`,
+        description: `${planId.toUpperCase()} Plan Subscription`,
         order_id: orderData.orderId,
         handler: async (response: RazorpayPaymentResponse) => {
-          console.log('Payment successful:', response);
-          onClose(); // Close the upgrade modal immediately
+          onClose();
           openModal('payment-verifying');
 
-          // Verify payment
           try {
             const verifyHeaders: Record<string, string> = { 'Content-Type': 'application/json' };
             if (session?.access_token) {
@@ -207,130 +202,148 @@ export const UpgradeModal = ({ isOpen, onClose, plan, onSuccess }: UpgradeModalP
               }
             );
 
-            if (!verifyResponse.ok) {
-              throw new Error('Payment verification failed');
-            }
+            if (!verifyResponse.ok) throw new Error('Verification failed');
 
-            // Refresh user profile to get updated plan
             await refreshProfile();
-
             openModal('payment-success', {
               onConfirm: () => {
-                onSuccess(plan);
+                onSuccess(planId);
                 onClose();
               }
             });
           } catch (error) {
-            console.error('Verification error:', error);
             openModal('payment-verification-failed');
           }
         },
-        prefill: {
-          email: email,
-        },
-        theme: {
-          color: plan === 'pro' ? '#3B82F6' : '#8B5CF6',
-        },
+        prefill: { email: user.email || '' },
+        theme: { color: planId === 'pro' ? '#3B82F6' : '#8B5CF6' },
         modal: {
           ondismiss: () => {
-            setIsLoading(false);
-            onClose(); // Close upgrade modal
+            setLoadingPlan(null);
+            onClose();
             setTimeout(() => openModal('payment-canceled'), 100);
           },
         },
       };
 
       const razorpay = new window.Razorpay(options);
-      razorpay.on('payment.failed', (response: RazorpayFailureResponse) => {
-        console.error('Payment failed:', response.error);
-        onClose(); // Close upgrade modal
-        setTimeout(() => openModal('payment-failed'), 100);
-        setIsLoading(false);
-      });
-
       razorpay.open();
     } catch (error) {
-      console.error('Payment error:', error);
-      onClose(); // Close upgrade modal
-      setTimeout(() => {
-        openModal('generic-error', {
-          title: 'Initialization Failed',
-          message: error instanceof Error ? error.message : 'Failed to initialize payment gateway.'
-        });
-      }, 100);
-      setIsLoading(false);
+      setLoadingPlan(null);
     }
   };
 
   return (
-    <Modal isOpen={isOpen} onClose={onClose} className="max-w-lg">
-      <div className="space-y-6">
+    <Modal isOpen={isOpen} onClose={onClose} className="max-w-[75rem] w-full bg-black/90 border-foreground/10 p-0 md:p-0 overflow-visible">
+      <div className="relative p-8 md:p-12 overflow-hidden">
+        {/* Background Gradients */}
+        <div className="absolute top-0 left-1/2 -translate-x-1/2 w-full h-[300px] bg-gradient-to-b from-primary/10 to-transparent pointer-events-none -z-10" />
+        
         {/* Header */}
-        <div className="text-center">
-          <motion.div
-            className={cn('w-20 h-20 rounded-2xl mx-auto mb-4 flex items-center justify-center', details.bgColor)}
-            initial={{ scale: 0 }}
-            animate={{ scale: 1 }}
-            transition={{ type: 'spring', duration: 0.5 }}
+        <div className="text-center mb-16">
+          <motion.div 
+            initial={{ opacity: 0, y: -20 }}
+            animate={{ opacity: 1, y: 0 }}
+            className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-card/50 border border-border/30 text-xs font-bold uppercase tracking-widest text-muted-foreground mb-6"
           >
-            <Icon className={cn('w-10 h-10', details.color)} />
+            <Crown className="w-3 h-3 text-primary" />
+            Pricing
           </motion.div>
-          <h2 className="text-2xl font-bold mb-2">Upgrade to {details.name}</h2>
-          <p className="text-muted-foreground">
-            Get the most out of RAW.AI and write without limits
-          </p>
+          <motion.h2 
+            initial={{ opacity: 0, y: -10 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 0.1 }}
+            className="text-5xl md:text-7xl font-display font-black tracking-tight mb-4 text-white"
+          >
+            Choose Your Plan
+          </motion.h2>
         </div>
 
-        {/* Price */}
-        <div className="text-center py-4 border-y border-border/30">
-          <span className="text-5xl font-bold">{details.price}</span>
-          <span className="text-muted-foreground">/month</span>
+        {/* Plans Grid */}
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-8 items-stretch pt-8">
+          {ALL_PLANS.map((plan, i) => {
+            const isCurrent = profile?.subscribed_plan === plan.id;
+            const isLite = plan.id === 'free';
+            const isPro = plan.id === 'pro';
+            const isUltra = plan.id === 'ultra';
+
+            return (
+              <motion.div
+                key={plan.id}
+                initial={{ opacity: 0, y: 30 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ delay: 0.2 + i * 0.1 }}
+                className={cn(
+                  "relative flex flex-col p-8 rounded-[2.5rem] border-2 transition-all duration-500 overflow-visible",
+                  isPro 
+                    ? "bg-white text-black border-white scale-105 z-20 shadow-[0_0_50px_rgba(255,255,255,0.1)]" 
+                    : "bg-[#0A0A0A] text-white border-white/5 hover:border-white/20 z-10"
+                )}
+              >
+                {plan.popular && (
+                  <div className="absolute -top-5 left-1/2 -translate-x-1/2 bg-black text-white text-[10px] font-black uppercase px-5 py-2 rounded-full border border-white/10 tracking-widest whitespace-nowrap z-50">
+                    Most Popular
+                  </div>
+                )}
+
+                <div className="mb-8">
+                  <h3 className="text-3xl font-black mb-2 flex items-center gap-3 font-display">
+                    {plan.name}
+                  </h3>
+                  <p className={cn("text-sm transition-opacity", isPro ? "text-neutral-500" : "text-neutral-400")}>
+                    {plan.description}
+                  </p>
+                </div>
+
+                <div className="mb-8 pb-8 border-b border-current/10">
+                  <div className="flex items-baseline gap-2">
+                    <span className="text-6xl font-black font-display">{plan.price}</span>
+                    {plan.id !== 'free' && <span className={cn("text-base font-bold", isPro ? "text-neutral-400" : "text-neutral-500")}>/mo</span>}
+                  </div>
+                </div>
+
+                <ul className="space-y-4 mb-12 flex-1">
+                  {plan.features.map((feature, j) => (
+                    <li key={j} className="flex items-center gap-3 text-sm font-medium">
+                      <Check className={cn("w-4 h-4 shrink-0", isPro ? "text-black" : "text-white")} />
+                      <span className="opacity-90">{feature}</span>
+                    </li>
+                  ))}
+                </ul>
+
+                <MagneticButton
+                  size="xl"
+                  variant={plan.buttonVariant}
+                  disabled={isCurrent || (loadingPlan !== null && loadingPlan !== plan.id)}
+                  onClick={() => {
+                    if (isLite) return;
+                    handleUpgrade(plan.id as 'pro' | 'ultra');
+                  }}
+                  className={cn(
+                    "w-full h-15 rounded-full text-xs font-black uppercase tracking-[0.2em] transition-all duration-300",
+                    isPro && "bg-black text-white border-black hover:bg-neutral-900 hover:scale-[1.02]",
+                    !isPro && "bg-white text-black border-white hover:bg-neutral-100",
+                    isCurrent && "opacity-50 cursor-default grayscale"
+                  )}
+                >
+                  {loadingPlan === plan.id ? (
+                    <Loader2 className="w-5 h-5 animate-spin" />
+                  ) : (
+                    isCurrent ? "Current Plan" : plan.cta
+                  )}
+                </MagneticButton>
+              </motion.div>
+            );
+          })}
         </div>
 
-        {/* Features */}
-        <ul className="space-y-3">
-          {details.features.map((feature, i) => (
-            <motion.li
-              key={i}
-              initial={{ opacity: 0, x: -20 }}
-              animate={{ opacity: 1, x: 0 }}
-              transition={{ delay: i * 0.05 }}
-              className="flex items-start gap-3"
-            >
-              <Check className={cn('w-5 h-5 shrink-0 mt-0.5', details.color)} />
-              <span className="text-sm">{feature}</span>
-            </motion.li>
-          ))}
-        </ul>
-
-
-
-        {/* CTA */}
-        <MagneticButton
-          size="xl"
-          className="w-full"
-          onClick={handlePayment}
-          disabled={isLoading}
-        >
-          {isLoading ? (
-            <>
-              <Loader2 className="w-5 h-5 animate-spin" />
-              Processing...
-            </>
-          ) : (
-            <>
-              <Crown className="w-5 h-5" />
-              Upgrade to {details.name}
-            </>
-          )}
-        </MagneticButton>
-
-        {/* Security note */}
-        <div className="flex items-center justify-center gap-2 text-xs text-muted-foreground">
+        {/* Security Note */}
+        <div className="mt-16 flex items-center justify-center gap-3 text-muted-foreground/40 font-bold uppercase tracking-[0.2em] text-[10px]">
           <Shield className="w-4 h-4" />
-          <span>Secure payment powered by Razorpay</span>
+          Secure Payment via Razorpay
         </div>
       </div>
     </Modal>
   );
 };
+
