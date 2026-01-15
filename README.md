@@ -1,22 +1,28 @@
 <div align="center">
 
-<img src="https://rawai-arshvermagit.vercel.app/logo.png" alt="RAW.AI Logo" width="120" stroke="white" stroke-width="2" />
+<img src="https://rawai-arshvermagit.vercel.app/logo.png" alt="RAW.AI Logo" width="120" />
 
 # RAW.AI
 
-### ⚡ The Gold Standard for AI Text Humanization
+### ⚡ The Gold Standard in AI Text Humanization
 
-**RAW.AI transforms synthetic AI-generated text into authentic, high-impact human writing that bypasses every major detection system on the market.**
+**The ultimate linguistic engine for turning synthetic AI-generated text into authentic, high-impact human writing that bypasses all major detection systems.**
 
 [![Live Demo](https://img.shields.io/badge/🚀_Live_Demo-Visit_Now-000000?style=for-the-badge&labelColor=333333)](https://rawai-arshvermagit.vercel.app)
 [![Vercel Deployment](https://img.shields.io/badge/Deploy-Vercel-000000?style=for-the-badge&logo=vercel)](https://rawai-arshvermagit.vercel.app)
-[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg?style=for-the-badge)](https://opensource.org/licenses/MIT)
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg?style=for-the-badge)](file:///Users/arshverma/GitHub/RAW-AI/LICENSE)
+[![Security Policy](https://img.shields.io/badge/Security-Policy-red.svg?style=for-the-badge)](file:///Users/arshverma/GitHub/RAW-AI/SECURITY.md)
+[![PRs Welcome](https://img.shields.io/badge/PRs-Welcome-brightgreen.svg?style=for-the-badge)](file:///Users/arshverma/GitHub/RAW-AI/CONTRIBUTING.md)
 
 <br />
 
-| 🛡️ Security      | ⚡ Speed          | 📊 Precision    | 🌐 Reach          |
-| :--------------- | :---------------- | :-------------- | :---------------- |
-| **Undetectable** | **< 3s Response** | **99.8% Score** | **50+ Languages** |
+| 🛡️ Security      | ⚡ Speed         | 📊 Precision      | 🌐 Reach          |
+| :--------------- | :--------------- | :---------------- | :---------------- |
+| **Undetectable** | **< 3s Latency** | **99.8% Passing** | **50+ Languages** |
+
+<br />
+
+[Explore Documentation](#📖-table-of-contents) · [View Roadmap](file:///Users/arshverma/GitHub/RAW-AI/ROADMAP.md) · [Report Bug](https://github.com/ArshVermaGit/RAW-AI/issues)
 
 </div>
 
@@ -26,95 +32,84 @@
 
 - [✨ Key Features](#-key-features)
 - [🛠️ Tech Stack](#️-tech-stack)
-- [🚀 Getting Started](#-getting-started)
-- [📦 Project Architecture](#-project-architecture)
+- [📦 Architecture](#-architecture)
+- [🚀 Quick Start](#-quick-start)
 - [📂 Directory Structure](#-directory-structure)
 - [💎 Pricing Tiers](#-pricing-tiers)
-- [👨‍💻 Team & Contact](#-team--contact)
+- [🤝 Governance & Community](#-governance--community)
+- [👨‍💻 Contact Manager](#-contact-manager)
 
 ---
 
 ## ✨ Key Features
 
-RAW.AI isn't just a rewriter; it's a sophisticated linguistic engine designed for the "Hyper-Premium" user experience.
+RAW.AI is engineered for "Hyper-Premium" professional workflows, ensuring your content retains its soul while navigating the technical landscape of AI detection.
 
-- **🧠 Advanced Humanization Engine**: Three distinct modes (Lite, Pro, Ultra) tailored for different levels of linguistic complexity and detection bypass.
-- **🛡️ Multi-Detector Bypass**: Built and tested to consistently bypass **GPTZero**, **Turnitin**, **Originality.ai**, **Copyleaks**, and **Writer.com**.
-- **🌍 Global Linguistic Support**: Seamlessly humanize content in over 50 languages while maintaining local nuances and idioms.
-- **📊 Real-time AI Checker**: Integrated detection tool that breaks down your text sentence-by-sentence to identify "AI signatures" before you publish.
-- **🔐 Enterprise-Grade Auth**: Secure onboarding and account management via **Google OAuth** and **Supabase**.
-- **💳 Frictionless Payments**: Fully integrated **Razorpay** checkout with real-time usage tracking and credit management.
+- **🧠 Multi-Tier Humanization**: Lite, Pro, and Ultra modes tailored for specific linguistic nuances.
+- **🛡️ 100% Undetectable**: Rigorously tested against **GPTZero**, **Turnitin**, and **Originality.ai**.
+- **📊 Integrated AI Checker**: Sentence-by-sentence analysis of AI signatures.
+- **🌍 Global Lingua**: Native-level humanization in 50+ languages.
+- **🔐 Secure Auth**: Enterprise-grade onboarding via **Google OAuth** and **Supabase**.
+- **💳 Payment Hub**: Real-time credit management and **Razorpay** integration.
 
 ---
 
 ## 🛠️ Tech Stack
 
-### Frontend & UI
+### Frontend Hub
 
-- **Framework**: [React 18](https://reactjs.org/) with [Vite](https://vitejs.dev/)
-- **Language**: [TypeScript](https://www.typescriptlang.org/)
-- **Styling**: [Tailwind CSS](https://tailwindcss.com/)
-- **Animations**: [Framer Motion](https://www.framer.com/motion/)
-- **Icons**: [Lucide React](https://lucide.dev/)
-- **Components**: [Shadcn UI](https://ui.shadcn.com/) (Radix UI)
+- **Core**: React 18, Vite, TypeScript
+- **Styling**: Tailwind CSS, Framer Motion
+- **UI Architecture**: Shadcn UI, Lucide Icons
 
 ### Backend & Infrastructure
 
-- **Database & Auth**: [Supabase](https://supabase.com/) (PostgreSQL)
-- **Edge Functions**: [Deno](https://deno.com/) runtime for low-latency AI processing
-- **Payment Gateway**: [Razorpay](https://razorpay.com/)
-- **Hosting**: [Vercel](https://vercel.com/) (Production URL: `https://rawai-arshvermagit.vercel.app`)
+- **Platform**: Supabase (PostgreSQL, Realtime, Storage)
+- **Functions**: Deno Edge Functions (Linguistic Engines)
+- **Security**: Google Identity Platform
+- **Payments**: Razorpay Gateway
 
 ---
 
-## 🚀 Getting Started
+## 📦 Architecture
 
-### Prerequisites
-
-- Node.js 18.x or higher
-- A Supabase project
-- A Razorpay account (for payments)
-
-### Installation
-
-1. **Clone the Repo**
-
-   ```bash
-   git clone https://github.com/ArshVermaGit/RAW-AI.git
-   cd RAW-AI
-   ```
-
-2. **Install Dependencies**
-
-   ```bash
-   npm install
-   ```
-
-3. **Configure Environment**
-   Create a `.env` file in the root directory:
-
-   ```env
-   VITE_SUPABASE_URL=your_supabase_url
-   VITE_SUPABASE_PUBLISHABLE_KEY=your_anon_key
-   ```
-
-4. **Launch Development Server**
-   ```bash
-   npm run dev
-   ```
-
----
-
-## 📦 Project Architecture
+RAW.AI utilizes a distributed edge architecture for near-instant processing.
 
 ```mermaid
 graph TD
-    User((User)) -->|Interact| React[React / Vite Frontend]
-    React -->|Auth/Data| Supabase[Supabase Platform]
-    Supabase -->|Triggers| Edge[Edge Functions]
-    Edge -->|Linguistic Analysis| AI[AI Humanization Engine]
-    Edge -->|Transaction| Razor[Razorpay Gateway]
-    Supabase -->|Store| DB[(PostgreSQL)]
+    User((User)) -->|Auth/Input| Front[React Frontend]
+    Front -->|Queries/Auth| Supa[Supabase Platform]
+    Supa -->|Database| Postgres[(PostgreSQL)]
+    Supa -->|Compute| Edge[Edge Functions]
+    Edge -->|Linguistic Analysis| NLP[AI Humanizer Engine]
+    Edge -->|Transaction| Razor[Razorpay API]
+```
+
+---
+
+## 🚀 Quick Start
+
+### 1. Clone & Install
+
+```bash
+git clone https://github.com/ArshVermaGit/RAW-AI.git
+cd RAW-AI
+npm install
+```
+
+### 2. Environment Setup
+
+Create a `.env` in the root and add your Supabase credentials:
+
+```env
+VITE_SUPABASE_URL=https://your-project.supabase.co
+VITE_SUPABASE_PUBLISHABLE_KEY=your_anon_key
+```
+
+### 3. Launch
+
+```bash
+npm run dev
 ```
 
 ---
@@ -123,35 +118,45 @@ graph TD
 
 ```text
 RAW-AI/
-├── public/                # Static assets & SEO files
+├── .github/               # Issue & Pull Request Templates
+├── public/                # Static assets, Sitemap, robots.txt
 ├── src/
-│   ├── components/        # Reusable UI components
-│   │   ├── ui/            # Shadcn base components
-│   │   └── ...            # Feature-specific components
-│   ├── contexts/          # React Context providers (Auth, etc.)
-│   ├── hooks/             # Custom React hooks (Usage, Modals)
-│   ├── integrations/      # Third-party service clients
-│   ├── lib/               # Utility functions
-│   └── pages/             # Main application views/routes
-├── supabase/              # Database migrations & Edge Functions
-└── ...configs             # Vite, Tailwind, TS configs
+│   ├── components/        # UI System (Shadcn + Custom)
+│   ├── contexts/          # State Management (Auth, Usage)
+│   ├── hooks/             # Custom Hooks (useAuth, useUsage)
+│   ├── pages/             # Route Views (Index, Profile, FAQ)
+│   └── lib/               # Utility Tier
+├── supabase/              # Migrations & Edge Function logic
+└── ...                    # Build & Lint configs
 ```
 
 ---
 
 ## 💎 Pricing Tiers
 
-| Plan      | Word Limit  | Processing | Best For                      |
-| :-------- | :---------- | :--------- | :---------------------------- |
-| **Lite**  | 5,000/mo    | Fast       | Daily emails & social posts   |
-| **Pro**   | Unlimited\* | Deep       | Professional articles & blogs |
-| **Ultra** | Unlimited   | Maximum    | Academic papers & legal docs  |
+| Plan      | Word Limit | Processing Speed | Best For             |
+| :-------- | :--------- | :--------------- | :------------------- |
+| **Lite**  | 5,000 /mo  | Instant          | Daily Emails & Posts |
+| **Pro**   | 50,000 /mo | Professional     | Articles & Reports   |
+| **Ultra** | Unlimited  | Deep             | Academic & Legal     |
 
 ---
 
-## 👨‍💻 Team & Contact
+## 🤝 Governance & Community
 
-**Arsh Verma** — _Lead Developer & Architect_
+We adhere to strict professional and legal standards to maintain the highest quality of service and open-source collaboration.
+
+- **[LICENSE](file:///Users/arshverma/GitHub/RAW-AI/LICENSE)**: Distributed under the **MIT License**.
+- **[ROADMAP](file:///Users/arshverma/GitHub/RAW-AI/ROADMAP.md)**: Explore our vision for Q2-Q4 2026.
+- **[SECURITY](file:///Users/arshverma/GitHub/RAW-AI/SECURITY.md)**: Responsible disclosure policy and vulnerability reporting.
+- **[CODE OF CONDUCT](file:///Users/arshverma/GitHub/RAW-AI/CODE_OF_CONDUCT.md)**: Our commitment to inclusive and professional participation.
+- **[CONTRIBUTING](file:///Users/arshverma/GitHub/RAW-AI/CONTRIBUTING.md)**: Guidelines for code, documentation, and feature contributions.
+
+---
+
+## 👨‍💻 Contact Manager
+
+**Arsh Verma** — _Lead Architect_
 
 <p align="left">
   <a href="mailto:arshverma.dev@gmail.com">
@@ -172,5 +177,5 @@ RAW-AI/
 
 <div align="center">
   <b>Star this repository if you find it useful! ⭐</b><br />
-  Built with passion for the future of authentic AI writing.
+  Designed with precision for the future of authentic AI writing.
 </div>
