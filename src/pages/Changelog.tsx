@@ -50,7 +50,7 @@ const Changelog = () => {
       <div className="absolute bottom-1/4 -right-32 w-96 h-96 bg-primary/5 rounded-full blur-3xl" />
 
       {/* Header */}
-      <header className="relative z-10 p-6 md:p-8">
+      <header className="relative z-10 p-4 md:p-8">
         <button
           onClick={() => navigate('/')}
           className="flex items-center gap-2 text-muted-foreground hover:text-foreground transition-colors group"
@@ -61,10 +61,10 @@ const Changelog = () => {
       </header>
 
       {/* Main Content */}
-      <main className="relative z-10 max-w-4xl mx-auto px-6 md:px-8 pb-20">
-        <div className="text-center mb-16">
-          <h1 className="text-4xl md:text-5xl font-bold mb-4">Changelog</h1>
-          <p className="text-xl text-muted-foreground">Follow our journey of constant improvement.</p>
+      <main className="relative z-10 max-w-4xl mx-auto px-4 md:px-8 pb-20">
+        <div className="text-center mb-12 md:mb-16">
+          <h1 className="text-3xl md:text-5xl font-bold mb-4">Changelog</h1>
+          <p className="text-lg md:text-xl text-muted-foreground">Follow our journey of constant improvement.</p>
         </div>
 
         <div className="space-y-12">
@@ -89,8 +89,8 @@ const Changelog = () => {
                 </div>
 
                 {/* Content */}
-                <div className="flex-1 p-8 rounded-3xl border border-border bg-card/30 backdrop-blur-sm hover:border-primary/20 transition-all">
-                  <h3 className="text-2xl font-bold mb-6 flex items-center gap-3">
+                <div className="flex-1 p-6 md:p-8 rounded-3xl border border-border bg-card/30 backdrop-blur-sm hover:border-primary/20 transition-all">
+                  <h3 className="text-xl md:text-2xl font-bold mb-6 flex items-center gap-3">
                     {update.title}
                   </h3>
                   <ul className="space-y-3">
