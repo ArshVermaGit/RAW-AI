@@ -1,23 +1,19 @@
 import { forwardRef } from 'react';
-import { motion } from 'framer-motion';
+import { motion, HTMLMotionProps } from 'framer-motion';
 import { cn } from '@/lib/utils';
 
-interface MagneticButtonProps {
+interface MagneticButtonProps extends HTMLMotionProps<"button"> {
   children: React.ReactNode;
-  onClick?: (e?: React.MouseEvent<HTMLButtonElement>) => void;
   variant?: 'primary' | 'secondary' | 'ghost' | 'outline';
   size?: 'sm' | 'default' | 'lg' | 'xl';
-  className?: string;
-  disabled?: boolean;
 }
 
 export const MagneticButton = forwardRef<HTMLButtonElement, MagneticButtonProps>(({ 
   children, 
-  onClick, 
   variant = 'primary',
   size = 'default',
   className,
-  disabled = false
+  ...props
 }, ref) => {
   const variants = {
     primary: "bg-foreground text-background hover:shadow-[0_0_50px_-10px_hsl(var(--foreground)/0.4)] border border-transparent",
@@ -36,8 +32,7 @@ export const MagneticButton = forwardRef<HTMLButtonElement, MagneticButtonProps>
   return (
     <motion.button
       ref={ref}
-      onClick={onClick}
-      disabled={disabled}
+      {...props}
       className={cn(
         "relative inline-flex items-center justify-center gap-2.5 rounded-full font-medium",
         "transition-all duration-400 ease-out-expo",
