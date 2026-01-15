@@ -1002,8 +1002,31 @@ const Index = () => {
               <p className="text-sm text-muted-foreground">Transform AI text into authentic content.</p>
             </div>
             {[
-              { title: 'Product', links: [{ label: 'AI Humanizer', action: () => document.getElementById('converter')?.scrollIntoView({ behavior: 'smooth' }) }, { label: 'AI Detector', action: () => document.getElementById('converter')?.scrollIntoView({ behavior: 'smooth' }) }] },
-              { title: 'Legal', links: [{ label: 'Privacy', action: () => navigate('/privacy') }, { label: 'Terms', action: () => navigate('/terms') }] },
+              { 
+                title: 'Product', 
+                links: [
+                  { label: 'AI Humanizer', action: () => document.getElementById('converter')?.scrollIntoView({ behavior: 'smooth' }) }, 
+                  { label: 'AI Detector', action: () => document.getElementById('converter')?.scrollIntoView({ behavior: 'smooth' }) },
+                  { label: 'Pricing', action: () => document.getElementById('pricing')?.scrollIntoView({ behavior: 'smooth' }) },
+                  { label: 'Changelog', action: () => navigate('/changelog') },
+                  { label: 'How It Works', action: () => navigate('/how-it-works') }
+                ] 
+              },
+              { 
+                title: 'Company', 
+                links: [
+                  { label: 'About Us', action: () => navigate('/about') },
+                  { label: 'Contact', action: () => navigate('/contact') },
+                  { label: 'FAQ', action: () => navigate('/faq') }
+                ] 
+              },
+              { 
+                title: 'Legal', 
+                links: [
+                  { label: 'Privacy Policy', action: () => navigate('/privacy') }, 
+                  { label: 'Terms of Service', action: () => navigate('/terms') }
+                ] 
+              },
             ].map((col, i) => (
               <div key={i}>
                 <h4 className="font-semibold mb-4">{col.title}</h4>
