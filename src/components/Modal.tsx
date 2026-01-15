@@ -57,9 +57,10 @@ export const Modal = ({ isOpen, onClose, children, title, className }: ModalProp
               ease: [0.16, 1, 0.3, 1] as [number, number, number, number]
             }}
             className={cn(
-              "relative z-[101] w-full max-w-xl max-h-[90vh] overflow-auto",
+              "relative z-[101] w-full max-h-[90vh] overflow-auto",
               "rounded-3xl bg-card border border-border/50 shadow-2xl",
               "scrollbar-hide",
+              !className?.includes('max-w-') && "max-w-xl",
               className
             )}
           >
