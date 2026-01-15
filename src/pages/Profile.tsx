@@ -258,7 +258,7 @@ const Profile = () => {
         transition={{ duration: 10, repeat: Infinity, ease: 'easeInOut' }}
       />
 
-      <div className="relative z-10 container mx-auto max-w-3xl px-6 py-12">
+      <div className="relative z-10 container mx-auto max-w-3xl px-4 md:px-6 py-8 md:py-12">
         {/* Header */}
         <motion.div
           initial={{ opacity: 0, y: 30 }}
@@ -342,9 +342,9 @@ const Profile = () => {
             transition={{ delay: 0.2 }}
           />
 
-          <div className="relative bg-card/80 backdrop-blur-xl border border-border/30 rounded-2xl p-8">
+          <div className="relative bg-card/80 backdrop-blur-xl border border-border/30 rounded-2xl p-6 md:p-8">
             {/* Avatar Section */}
-            <div className="flex flex-col sm:flex-row items-center gap-6 mb-8 pb-8 border-b border-border/30">
+            <div className="flex flex-col sm:flex-row items-center gap-4 md:gap-6 mb-8 pb-8 border-b border-border/30">
               <div className="relative">
                 <div
                   className={cn(
@@ -394,8 +394,8 @@ const Profile = () => {
                     </span>
                   )}
                 </div>
-                <p className="text-muted-foreground text-sm flex items-center gap-1 justify-center sm:justify-start">
-                  <Mail className="w-3.5 h-3.5" />
+                <p className="text-muted-foreground text-sm flex items-center gap-1 justify-center sm:justify-start break-all">
+                  <Mail className="w-3.5 h-3.5 shrink-0" />
                   {user?.email}
                 </p>
               </div>
@@ -429,7 +429,7 @@ const Profile = () => {
                 <Input
                   value={user?.email || ''}
                   disabled
-                  className="bg-secondary/30 h-12 text-muted-foreground"
+                  className="bg-secondary/30 h-12 text-muted-foreground truncate"
                 />
                 <p className="text-xs text-muted-foreground">Email cannot be changed</p>
               </div>
@@ -468,7 +468,7 @@ const Profile = () => {
             transition={{ delay: 0.3 }}
           />
 
-          <div className="relative bg-card/80 backdrop-blur-xl border border-border/30 rounded-2xl p-8">
+          <div className="relative bg-card/80 backdrop-blur-xl border border-border/30 rounded-2xl p-6 md:p-8">
             <motion.div
               className="flex items-center gap-3 mb-6"
               initial={{ opacity: 0, x: -20 }}
