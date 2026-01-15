@@ -18,7 +18,7 @@ import { FloatingParticles } from '@/components/FloatingParticles';
 import { useAuth } from '@/hooks/useAuth';
 import { supabase } from '@/integrations/supabase/client';
 import { cn } from '@/lib/utils';
-import { useToast } from '@/components/ui/use-toast';
+import { toast } from 'sonner';
 
 interface OnboardingStep {
   id: number;
@@ -90,7 +90,6 @@ const Onboarding = () => {
   const [isCompleting, setIsCompleting] = useState(false);
   const navigate = useNavigate();
   const { user, refreshProfile } = useAuth();
-  const { toast } = useToast(); // Added useToast hook
 
   const handleNext = () => {
     if (currentStep < steps.length - 1) {
@@ -115,8 +114,7 @@ const Onboarding = () => {
         .eq('id', user.id);
 
       await refreshProfile();
-      toast({ // Added toast call here, as it's a more appropriate place for a completion message
-        title: '🎉 Account Created!',
+      toast.success('🎉 Account Created!', {
         description: 'Welcome to RAW.AI!',
       });
       navigate('/');
