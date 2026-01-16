@@ -2,6 +2,8 @@ import React from 'react';
 import { useModals } from '@/hooks/use-modals';
 import { FeedbackModal } from '@/components/FeedbackModal';
 import { UpgradeModal } from '@/components/UpgradeModal';
+import { EditProfileModal } from '@/components/profile/EditProfileModal';
+import { EditPhotoModal } from '@/components/profile/EditPhotoModal';
 
 export const ModalContainer = () => {
   const { modalState, closeModal } = useModals();
@@ -29,6 +31,14 @@ export const ModalContainer = () => {
           }}
         />
       )}
+      <EditProfileModal
+        isOpen={modalState.isOpen && modalState.type === 'edit-profile'}
+        onClose={closeModal}
+      />
+      <EditPhotoModal
+        isOpen={modalState.isOpen && modalState.type === 'edit-photo'}
+        onClose={closeModal}
+      />
     </>
   );
 };
