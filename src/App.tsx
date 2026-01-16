@@ -21,6 +21,7 @@ import Terms from "./pages/Terms";
 import Contact from "./pages/Contact";
 import FAQ from "./pages/FAQ";
 import Changelog from "./pages/Changelog";
+import RefundPolicy from "./pages/RefundPolicy";
 import HowItWorks from "./pages/HowItWorks";
 import NotFound from "./pages/NotFound";
 import ErrorPage from "./pages/ErrorPage";
@@ -57,6 +58,7 @@ const App = () => (
                     <Route path="/faq" element={<FAQ />} />
                     <Route path="/changelog" element={<Changelog />} />
                     <Route path="/how-it-works" element={<HowItWorks />} />
+                    <Route path="/refund-policy" element={<RefundPolicy />} />
                     {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
                     <Route path="/error" element={<ErrorPage />} />
                     <Route path="*" element={<NotFound />} />
