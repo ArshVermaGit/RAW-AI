@@ -47,7 +47,8 @@ export const Footer = () => {
                 title: 'Legal', 
                 links: [
                   { label: 'Privacy Policy', action: () => navigate('/privacy') }, 
-                  { label: 'Terms of Service', action: () => navigate('/terms') }
+                  { label: 'Terms of Service', action: () => navigate('/terms') },
+                  { label: 'Refund Policy', action: () => navigate('/refund-policy') }
                 ] 
               },
             ].map((col, i) => (
