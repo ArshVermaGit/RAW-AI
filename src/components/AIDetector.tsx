@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { motion, AnimatePresence } from 'framer-motion';
+import { motion } from 'framer-motion';
 import { Shield, AlertTriangle, CheckCircle2, Copy, Check, Trash2, FileText, ChevronDown, BarChart3, Lock } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Textarea } from '@/components/ui/textarea';
@@ -42,10 +42,8 @@ export const AIDetector = () => {
   const navigate = useNavigate();
   const [loadingStep, setLoadingStep] = useState(0);
   const loadingSteps = ['Reading your text...', 'Making it smooth...', 'Adding a human touch...', 'Almost there...'];
-  const [hasShownFirstUseFeedback, setHasShownFirstUseFeedback] = useState(false);
 
   const wordCount = inputText.trim().split(/\s+/).filter(w => w).length;
-  const charCount = inputText.length;
 
   const handleAnalyze = async () => {
     if (!inputText.trim()) {
