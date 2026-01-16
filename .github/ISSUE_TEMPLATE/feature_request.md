@@ -1,30 +1,27 @@
 ---
-name: Feature Request 🚀
-about: Suggest an idea for RAW.AI
-title: "[FEATURE] "
+name: 💡 Feature Request
+about: Suggest an idea for this project
+title: "[FEAT] "
 labels: enhancement
 assignees: ""
 ---
 
-## 💡 Problem Statement
+## 💡 Feature Description
 
-Is your feature request related to a problem? Please describe.
-_Ex: I'm always frustrated when..._
+<!-- A clear and concise description of what the problem is. Ex. I'm always frustrated when [...] -->
 
-## ✨ Proposed Solution
+## 🚀 Proposed Solution
 
-A clear and concise description of what you want to happen.
+<!-- A clear and concise description of what you want to happen. -->
 
-## 🤷 Alternatives Considered
+## 🔄 Alternatives Considered
 
-A clear and concise description of any alternative solutions or features you've considered.
+<!-- A clear and concise description of any alternative solutions or features you've considered. -->
 
-## 🎨 Mockups / Screenshots
+## 📸 Mockups / Screenshots
 
-If you have any visual ideas, please paste them here.
+<!-- If applicable, add sketches or screenshots to help explain your idea. -->
 
-## 📋 Checklist
+## 📋 Additional Context
 
-- [ ] I have checked the existing issues and this is not a duplicate.
-- [ ] I have searched the documentation to ensure this feature doesn't already exist.
-- [ ] I am willing to contribute to the implementation of this feature (optional).
+<!-- Add any other context or screenshots about the feature request here. -->
