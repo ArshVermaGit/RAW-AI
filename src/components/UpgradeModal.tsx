@@ -1,6 +1,6 @@
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 import { motion } from 'framer-motion';
-import { Sparkles, Rocket, Check, Loader2, Zap, Shield, Crown, Star } from 'lucide-react';
+import { Check, Loader2, Shield, Crown } from 'lucide-react';
 import { Modal } from '@/components/Modal';
 import { MagneticButton } from '@/components/MagneticButton';
 import { useAuth } from '@/hooks/useAuth';
@@ -213,7 +213,7 @@ export const UpgradeModal = ({ isOpen, onClose, onSuccess }: UpgradeModalProps) 
                 onClose();
               }
             });
-          } catch (error) {
+          } catch {
             openModal('payment-verification-failed');
           }
         },
@@ -230,7 +230,7 @@ export const UpgradeModal = ({ isOpen, onClose, onSuccess }: UpgradeModalProps) 
 
       const razorpay = new window.Razorpay(options);
       razorpay.open();
-    } catch (error) {
+    } catch {
       setLoadingPlan(null);
     }
   };
@@ -267,7 +267,6 @@ export const UpgradeModal = ({ isOpen, onClose, onSuccess }: UpgradeModalProps) 
             const isCurrent = profile?.subscribed_plan === plan.id;
             const isLite = plan.id === 'free';
             const isPro = plan.id === 'pro';
-            const isUltra = plan.id === 'ultra';
 
             return (
               <motion.div
