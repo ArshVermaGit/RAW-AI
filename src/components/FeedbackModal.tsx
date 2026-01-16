@@ -1,5 +1,5 @@
-import { motion, AnimatePresence } from 'framer-motion';
-import { CheckCircle2, XCircle, Mail, Sparkles, PartyPopper, ArrowRight, X, Zap, LogOut, Trash2, Rocket, Heart, Shield, Loader2 } from 'lucide-react';
+import { motion } from 'framer-motion';
+import { CheckCircle2, XCircle, Sparkles, PartyPopper, ArrowRight, Zap, LogOut, Trash2, Rocket, Heart, Shield, Loader2 } from 'lucide-react';
 import { Modal } from './Modal';
 import { MagneticButton } from './MagneticButton';
 import { cn } from '@/lib/utils';
