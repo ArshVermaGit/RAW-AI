@@ -2,42 +2,52 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
     <loc>https://rawai-arshvermagit.vercel.app/</loc>
-    <lastmod>2026-01-15</lastmod>
+    <lastmod>2026-01-16</lastmod>
     <priority>1.0</priority>
   </url>
   <url>
-    <loc>https://rawai-arshvermagit.vercel.app/about</loc>
-    <lastmod>2026-01-15</lastmod>
+    <loc>https://rawai-arshvermagit.vercel.app/auth</loc>
+    <lastmod>2026-01-16</lastmod>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://rawai-arshvermagit.vercel.app/how-it-works</loc>
-    <lastmod>2026-01-15</lastmod>
+    <lastmod>2026-01-16</lastmod>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://rawai-arshvermagit.vercel.app/faq</loc>
-    <lastmod>2026-01-15</lastmod>
-    <priority>0.7</priority>
-  </url>
-  <url>
-    <loc>https://rawai-arshvermagit.vercel.app/changelog</loc>
-    <lastmod>2026-01-15</lastmod>
+    <loc>https://rawai-arshvermagit.vercel.app/about</loc>
+    <lastmod>2026-01-16</lastmod>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://rawai-arshvermagit.vercel.app/contact</loc>
-    <lastmod>2026-01-15</lastmod>
+    <lastmod>2026-01-16</lastmod>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://rawai-arshvermagit.vercel.app/faq</loc>
+    <lastmod>2026-01-16</lastmod>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://rawai-arshvermagit.vercel.app/changelog</loc>
+    <lastmod>2026-01-16</lastmod>
     <priority>0.6</priority>
   </url>
   <url>
     <loc>https://rawai-arshvermagit.vercel.app/privacy</loc>
-    <lastmod>2026-01-15</lastmod>
+    <lastmod>2026-01-16</lastmod>
     <priority>0.5</priority>
   </url>
   <url>
     <loc>https://rawai-arshvermagit.vercel.app/terms</loc>
-    <lastmod>2026-01-15</lastmod>
+    <lastmod>2026-01-16</lastmod>
+    <priority>0.5</priority>
+  </url>
+  <url>
+    <loc>https://rawai-arshvermagit.vercel.app/refund-policy</loc>
+    <lastmod>2026-01-16</lastmod>
     <priority>0.5</priority>
   </url>
 </urlset>
