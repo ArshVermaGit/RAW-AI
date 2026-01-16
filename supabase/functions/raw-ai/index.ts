@@ -86,7 +86,7 @@ serve(async (req: Request) => {
       const currentUsage = usageData?.reduce((sum: number, log: { words_count?: number }) => sum + (log.words_count || 0), 0) || 0;
       const planLimit = PLAN_LIMITS[userPlan];
 
-      console.log(`User ${userId} (${userPlan}): ${currentUsage}/${planLimit} words used`);
+      console.error(`User ${userId} (${userPlan}): ${currentUsage}/${planLimit} words used`);
 
       if (planLimit !== Infinity && currentUsage + wordsCount > planLimit) {
         const remaining = Math.max(0, planLimit - currentUsage);
@@ -192,7 +192,7 @@ IMPORTANT RULES:
 7. Include appropriate transitions between ideas
 8. Avoid overused AI phrases like "dive into", "in conclusion", "it's important to note"`;
 
-    console.log(`Humanizing text with level: ${level}, style: ${style}, model: ${selectedModel}, words: ${wordsCount}`);
+    console.error(`Humanizing text with level: ${level}, style: ${style}, model: ${selectedModel}, words: ${wordsCount}`);
 
     const response = await fetch("https://api.openai.com/v1/chat/completions", {
       method: "POST",
@@ -293,10 +293,10 @@ IMPORTANT RULES:
         user_id: userId,
         words_count: wordsCount,
       });
-      console.log(`Logged ${wordsCount} words for user ${userId}`);
+      console.error(`Logged ${wordsCount} words for user ${userId}`);
     }
 
-    console.log("Successfully humanized text with score:", humanScore);
+    console.error("Successfully humanized text with score:", humanScore);
 
     return new Response(JSON.stringify({
       humanizedText,
