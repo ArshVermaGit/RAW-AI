@@ -10,9 +10,9 @@
 
 [![Live Demo](https://img.shields.io/badge/🚀_Live_Demo-Visit_Now-000000?style=for-the-badge&labelColor=333333)](https://rawai-arshvermagit.vercel.app)
 [![Vercel Deployment](https://img.shields.io/badge/Deploy-Vercel-000000?style=for-the-badge&logo=vercel)](https://rawai-arshvermagit.vercel.app)
-[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg?style=for-the-badge)](file:///Users/arshverma/GitHub/RAW-AI/LICENSE)
-[![Security Policy](https://img.shields.io/badge/Security-Policy-red.svg?style=for-the-badge)](file:///Users/arshverma/GitHub/RAW-AI/SECURITY.md)
-[![PRs Welcome](https://img.shields.io/badge/PRs-Welcome-brightgreen.svg?style=for-the-badge)](file:///Users/arshverma/GitHub/RAW-AI/CONTRIBUTING.md)
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg?style=for-the-badge)](LICENSE)
+[![Security Policy](https://img.shields.io/badge/Security-Policy-red.svg?style=for-the-badge)](SECURITY.md)
+[![PRs Welcome](https://img.shields.io/badge/PRs-Welcome-brightgreen.svg?style=for-the-badge)](CONTRIBUTING.md)
 
 <br />
 
@@ -22,7 +22,7 @@
 
 <br />
 
-[Explore Documentation](#📖-table-of-contents) · [View Roadmap](file:///Users/arshverma/GitHub/RAW-AI/ROADMAP.md) · [Report Bug](https://github.com/ArshVermaGit/RAW-AI/issues)
+[Explore Documentation](#📖-table-of-contents) · [View Roadmap](ROADMAP.md) · [Report Bug](https://github.com/ArshVermaGit/RAW-AI/issues)
 
 </div>
 
@@ -146,11 +146,11 @@ RAW-AI/
 
 We adhere to strict professional and legal standards to maintain the highest quality of service and open-source collaboration.
 
-- **[LICENSE](file:///Users/arshverma/GitHub/RAW-AI/LICENSE)**: Distributed under the **MIT License**.
-- **[ROADMAP](file:///Users/arshverma/GitHub/RAW-AI/ROADMAP.md)**: Explore our vision for Q2-Q4 2026.
-- **[SECURITY](file:///Users/arshverma/GitHub/RAW-AI/SECURITY.md)**: Responsible disclosure policy and vulnerability reporting.
-- **[CODE OF CONDUCT](file:///Users/arshverma/GitHub/RAW-AI/CODE_OF_CONDUCT.md)**: Our commitment to inclusive and professional participation.
-- **[CONTRIBUTING](file:///Users/arshverma/GitHub/RAW-AI/CONTRIBUTING.md)**: Guidelines for code, documentation, and feature contributions.
+- **[LICENSE](LICENSE)**: Distributed under the **MIT License**.
+- **[ROADMAP](ROADMAP.md)**: Explore our vision for Q2-Q4 2026.
+- **[SECURITY](SECURITY.md)**: Responsible disclosure policy and vulnerability reporting.
+- **[CODE OF CONDUCT](CODE_OF_CONDUCT.md)**: Our commitment to inclusive and professional participation.
+- **[CONTRIBUTING](CONTRIBUTING.md)**: Guidelines for code, documentation, and feature contributions.
 
 ---
 
