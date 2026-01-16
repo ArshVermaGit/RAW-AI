@@ -1,7 +1,6 @@
 import { ArrowLeft, Mail, MessageSquare, MapPin, Send } from 'lucide-react';
 import { useNavigate } from 'react-router-dom';
 import { MagneticButton } from '@/components/MagneticButton';
-import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Textarea } from '@/components/ui/textarea';
 
