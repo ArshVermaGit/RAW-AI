@@ -44,7 +44,7 @@ const Auth = () => {
           description: error.message,
         });
       }
-    } catch (error) {
+    } catch {
       toast.error('Error', {
         description: 'Failed to sign in with Google',
       });
