@@ -6,14 +6,25 @@ labels: enhancement
 assignees: ""
 ---
 
-**Is your feature request related to a problem? Please describe.**
-A clear and concise description of what the problem is. Ex. I'm always frustrated when [...]
+## 💡 Problem Statement
 
-**Describe the solution you'd like**
+Is your feature request related to a problem? Please describe.
+_Ex: I'm always frustrated when..._
+
+## ✨ Proposed Solution
+
 A clear and concise description of what you want to happen.
 
-**Describe alternatives you've considered**
+## 🤷 Alternatives Considered
+
 A clear and concise description of any alternative solutions or features you've considered.
 
-**Additional context**
-Add any other context or screenshots about the feature request here.
+## 🎨 Mockups / Screenshots
+
+If you have any visual ideas, please paste them here.
+
+## 📋 Checklist
+
+- [ ] I have checked the existing issues and this is not a duplicate.
+- [ ] I have searched the documentation to ensure this feature doesn't already exist.
+- [ ] I am willing to contribute to the implementation of this feature (optional).
