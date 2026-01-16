@@ -1,4 +1,4 @@
-import { useEffect, useRef } from 'react';
+
 
 const detectors = [
   { name: 'GPTZero', letter: 'G' },
