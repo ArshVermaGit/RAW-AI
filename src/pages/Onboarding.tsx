@@ -9,8 +9,6 @@ import {
   ChevronRight,
   ChevronLeft,
   Check,
-  Bot,
-  FileText,
   TrendingUp
 } from 'lucide-react';
 import { Button } from '@/components/ui/button';
