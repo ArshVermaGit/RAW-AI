@@ -68,8 +68,6 @@ const RefundPolicy = () => {
             <h2 className="text-2xl font-semibold text-foreground">3. How to Request a Refund</h2>
             <p className="text-muted-foreground">
               To request a refund, please contact our support team at{' '}
-              <a href="mailto:support@rawai.com" className="text-primary hover:underline">support@rawai.com</a>{' '}
-              or{' '}
               <a href="mailto:arshverma.dev@gmail.com" className="text-primary hover:underline">arshverma.dev@gmail.com</a>{' '}
               with the following details:
             </p>
