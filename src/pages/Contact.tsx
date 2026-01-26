@@ -1,4 +1,4 @@
-import { ArrowLeft, Mail, MessageSquare, MapPin, Send } from 'lucide-react';
+import { ArrowLeft, Mail, Send } from 'lucide-react';
 import { useNavigate } from 'react-router-dom';
 import { MagneticButton } from '@/components/MagneticButton';
 import { Input } from '@/components/ui/input';
@@ -10,7 +10,7 @@ const Contact = () => {
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     // In a real app, this would send data to a backend
-    window.location.href = `mailto:support@raw.ai?subject=Support Request&body=Hi RAW.AI Team,`;
+    window.location.href = `mailto:arshverma.dev@gmail.com?subject=Support Request&body=Hi Arsh,`;
   };
 
   return (
@@ -50,25 +50,7 @@ const Contact = () => {
                   </div>
                   <div>
                     <p className="font-medium mb-1">Email</p>
-                    <a href="mailto:support@raw.ai" className="text-muted-foreground hover:text-primary transition-colors">support@raw.ai</a>
-                  </div>
-                </div>
-                <div className="flex items-start gap-4">
-                  <div className="w-10 h-10 rounded-xl bg-primary/10 flex items-center justify-center shrink-0">
-                    <MessageSquare className="w-5 h-5 text-primary" />
-                  </div>
-                  <div>
-                    <p className="font-medium mb-1">Live Chat</p>
-                    <p className="text-muted-foreground">Available Mon-Fri, 9am-5pm EST</p>
-                  </div>
-                </div>
-                <div className="flex items-start gap-4">
-                  <div className="w-10 h-10 rounded-xl bg-primary/10 flex items-center justify-center shrink-0">
-                    <MapPin className="w-5 h-5 text-primary" />
-                  </div>
-                  <div>
-                    <p className="font-medium mb-1">Office</p>
-                    <p className="text-muted-foreground">San Francisco, CA</p>
+                    <a href="mailto:arshverma.dev@gmail.com" className="text-muted-foreground hover:text-primary transition-colors">arshverma.dev@gmail.com</a>
                   </div>
                 </div>
               </div>
